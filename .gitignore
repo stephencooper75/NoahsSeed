@@ -1,0 +1,29 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Godot
+.godot/
+
+# Build output
+/build/
+/exports/
+
+# Node (future-proofing)
+node_modules/
+
+releases/
