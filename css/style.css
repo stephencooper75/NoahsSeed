@@ -100,15 +100,12 @@ button:disabled{
 }
 
 .sun {
-
     position: fixed;
-
     top: 30px;
-
     right: 40px;
-
     font-size: 70px;
 
+    animation: sunshine 4s ease-in-out infinite;
 }
 
 .cloud {
@@ -128,6 +125,25 @@ button:disabled{
 
     to {
         left: 100%;
+    }
+
+}
+
+@keyframes sunshine {
+
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+        filter: brightness(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
     }
 
 }
