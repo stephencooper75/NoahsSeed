@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Noah's Seed</title>
 
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 
 <body>
 
 <div class="sun">☀️</div>
+
 <div class="cloud">☁️</div>
+
 
 <!-- Welcome Screen -->
 
@@ -32,6 +40,7 @@
 </div>
 
 
+
 <!-- Location Screen -->
 
 <div id="locationScreen" class="container hidden">
@@ -45,33 +54,51 @@
 </div>
 
 
+
 <!-- Game Screen -->
 
 <div id="gameScreen" class="container hidden">
 
     <h1>🌱 Noah's World</h1>
 
+
+    <div id="locationInfo"></div>
+
+
     <div id="message">
         Welcome Noah! Let's begin today's adventure.
     </div>
 
+
     <div id="generatedActivities"></div>
 
-</div>
 
 </div>
+
+
 
 <script src="app/core/EventBus.js"></script>
+
 <script src="app/core/Registry.js"></script>
 
+
 <script src="app/data/activities.js"></script>
+
+<script src="app/data/activities/activityLibrary.js"></script>
+
 <script src="app/data/worlds/noahsWorld.js"></script>
 
+
 <script src="app/systems/NavigationSystem.js"></script>
+
 <script src="app/systems/WorldSystem.js"></script>
+
 <script src="app/systems/LocationSystem.js"></script>
+
 
 <script src="app/engine.js"></script>
 
+
 </body>
+
 </html>
