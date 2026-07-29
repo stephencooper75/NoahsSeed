@@ -1,14 +1,26 @@
 class Activity {
+
     constructor(data) {
+
         this.id = data.id;
         this.name = data.name;
         this.icon = data.icon;
         this.message = data.message;
+
     }
+
 }
 
 class Engine {
+
     constructor() {
+
+        this.navigation = new NavigationSystem();
+
+        this.navigation.register("welcomeScreen");
+        this.navigation.register("gameScreen");
+
+        this.navigation.show("welcomeScreen");
 
         this.activities = {};
         this.completed = 0;
@@ -27,21 +39,10 @@ class Engine {
         document
             .getElementById("startButton")
             .addEventListener("click", () => {
-                this.startAdventure();
+
+                this.navigation.show("gameScreen");
+
             });
-
-        console.log(this.activities);
-    }
-
-    startAdventure() {
-
-        document
-            .getElementById("welcomeScreen")
-            .classList.add("hidden");
-
-        document
-            .getElementById("gameScreen")
-            .classList.remove("hidden");
 
     }
 
@@ -62,7 +63,9 @@ class Engine {
             `${activity.icon} ${activity.name}`;
 
         button.addEventListener("click", () => {
+
             this.completeActivity(button, activityId);
+
         });
 
         this.generatedActivities.appendChild(button);
@@ -87,6 +90,7 @@ class Engine {
             activity.message;
 
     }
+
 }
 
 const engine = new Engine();
