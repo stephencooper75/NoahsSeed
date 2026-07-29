@@ -15,6 +15,10 @@ class Engine {
 
     constructor() {
 
+        this.eventBus = new EventBus();
+
+this.activityRegistry = new Registry("Activity");
+
         this.navigation = new NavigationSystem();
 
         this.navigation.register("welcomeScreen");
@@ -28,9 +32,16 @@ class Engine {
         this.generatedActivities =
             document.getElementById("generatedActivities");
 
-        for (const activity of ACTIVITY_DATA) {
-            this.registerActivity(activity);
-        }
+for (const activity of ACTIVITY_DATA) {
+
+    this.registerActivity(activity);
+
+    this.activityRegistry.register(
+        activity.id,
+        activity
+    );
+
+}
 
         for (const activity of ACTIVITY_DATA) {
             this.createActivityButton(activity.id);
