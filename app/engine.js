@@ -19,6 +19,32 @@ class Engine {
 
 this.activityRegistry = new Registry("Activity");
 
+this.world = new WorldSystem(this.eventBus);
+this.world.loadWorld({
+
+    name: "Noah's World",
+
+    locations: [
+
+        {
+            id: "home",
+            name: "Home"
+        },
+
+        {
+            id: "garden",
+            name: "Garden"
+        },
+
+        {
+            id: "beach",
+            name: "Beach"
+        }
+
+    ]
+
+});
+
 this.eventBus.subscribe(
     "activity_completed",
     (data) => {
