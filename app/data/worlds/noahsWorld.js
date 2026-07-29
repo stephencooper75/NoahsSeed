@@ -2,29 +2,32 @@ const NOAH_WORLD = {
 
     name: "Noah's World",
 
-    locations: [
+locations: [
 
-        {
-            id: "home",
-            name: "Home",
-            icon: "🏠",
-            description: "Your cosy home base."
-        },
+    {
+        id: "home",
+        name: "Home",
+        icon: "🏠",
+        description:
+            "A cosy place where Noah can read, relax and spend time with family."
+    },
 
-        {
-            id: "garden",
-            name: "Garden",
-            icon: "🌱",
-            description: "Grow plants and discover nature."
-        },
+    {
+        id: "garden",
+        name: "Garden",
+        icon: "🌱",
+        description:
+            "A peaceful place where plants grow and discoveries can be made."
+    },
 
-        {
-            id: "beach",
-            name: "Beach",
-            icon: "🏖️",
-            description: "Explore the sand, water and wildlife."
-        }
+    {
+        id: "beach",
+        name: "Beach",
+        icon: "🏖️",
+        description:
+            "A place to explore the sand, waves and creatures of the ocean."
+    }
 
-    ]
+]
 
 };

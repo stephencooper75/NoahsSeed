@@ -25,7 +25,7 @@ this.locationSystem =
         this.eventBus,
         this.world
     );
-    
+
 this.world.loadWorld(NOAH_WORLD);
 
 this.eventBus.subscribe(
@@ -44,10 +44,13 @@ this.eventBus.subscribe(
     "location_selected",
     (location) => {
 
-        console.log(
-            "Location selected:",
-            location
-        );
+        this.navigation.show("gameScreen");
+
+        document.getElementById("message").innerHTML =
+            `
+            <h2>${location.icon} ${location.name}</h2>
+            <p>${location.description}</p>
+            `;
 
     }
 );
@@ -77,9 +80,9 @@ for (const activity of ACTIVITY_DATA) {
 
 }
 
-        for (const activity of ACTIVITY_DATA) {
-            this.createActivityButton(activity.id);
-        }
+//        for (const activity of ACTIVITY_DATA) {
+//            this.createActivityButton(activity.id);
+//        }
 
 document
     .getElementById("startButton")

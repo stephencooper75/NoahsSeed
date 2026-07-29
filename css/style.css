@@ -17,7 +17,9 @@ body {
 }
 
 .container {
+
     background: rgba(255,255,255,0.92);
+
     width: 420px;
 
     padding: 30px;
@@ -27,6 +29,15 @@ body {
     text-align: center;
 
     box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+}
+
+#welcomeScreen,
+#locationScreen,
+#gameScreen {
+
+    position: absolute;
+
 }
 
 h1{
