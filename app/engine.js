@@ -19,6 +19,18 @@ class Engine {
 
 this.activityRegistry = new Registry("Activity");
 
+this.eventBus.subscribe(
+    "activity_completed",
+    (data) => {
+
+        console.log(
+            "Activity completed event received:",
+            data
+        );
+
+    }
+);
+
         this.navigation = new NavigationSystem();
 
         this.navigation.register("welcomeScreen");
@@ -99,6 +111,14 @@ for (const activity of ACTIVITY_DATA) {
 
         document.getElementById("message").innerHTML =
             activity.message;
+
+            this.eventBus.publish(
+    "activity_completed",
+    {
+        id: activity.id,
+        name: activity.name
+    }
+);
 
     }
 
