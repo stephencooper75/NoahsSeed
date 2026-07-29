@@ -6,12 +6,47 @@ class LocationSystem {
 
         this.worldSystem = worldSystem;
 
+        this.container =
+            document.getElementById("locations");
+
     }
 
 
     getLocations() {
 
         return this.worldSystem.world.locations;
+
+    }
+
+
+    displayLocations() {
+
+        this.container.innerHTML = "";
+
+
+        for (const location of this.getLocations()) {
+
+            const button =
+                document.createElement("button");
+
+
+            button.textContent =
+    `${location.icon || ""} ${location.name}`;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    this.chooseLocation(location.id);
+
+                }
+            );
+
+
+            this.container.appendChild(button);
+
+        }
 
     }
 

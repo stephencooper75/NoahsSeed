@@ -25,30 +25,8 @@ this.locationSystem =
         this.eventBus,
         this.world
     );
-this.world.loadWorld({
-
-    name: "Noah's World",
-
-    locations: [
-
-        {
-            id: "home",
-            name: "Home"
-        },
-
-        {
-            id: "garden",
-            name: "Garden"
-        },
-
-        {
-            id: "beach",
-            name: "Beach"
-        }
-
-    ]
-
-});
+    
+this.world.loadWorld(NOAH_WORLD);
 
 this.eventBus.subscribe(
     "activity_completed",
@@ -77,7 +55,8 @@ this.eventBus.subscribe(
         this.navigation = new NavigationSystem();
 
         this.navigation.register("welcomeScreen");
-        this.navigation.register("gameScreen");
+this.navigation.register("locationScreen");
+this.navigation.register("gameScreen");
 
         this.navigation.show("welcomeScreen");
 
@@ -102,13 +81,15 @@ for (const activity of ACTIVITY_DATA) {
             this.createActivityButton(activity.id);
         }
 
-        document
-            .getElementById("startButton")
-            .addEventListener("click", () => {
+document
+    .getElementById("startButton")
+    .addEventListener("click", () => {
 
-                this.navigation.show("gameScreen");
+        this.navigation.show("locationScreen");
 
-            });
+        this.locationSystem.displayLocations();
+
+    });
 
     }
 
