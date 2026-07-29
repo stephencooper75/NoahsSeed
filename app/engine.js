@@ -1,6 +1,5 @@
 class Activity {
     constructor(data) {
-
         this.id = data.id;
         this.name = data.name;
         this.icon = data.icon;
@@ -17,67 +16,77 @@ class Engine {
         this.generatedActivities =
             document.getElementById("generatedActivities");
 
+        for (const activity of ACTIVITY_DATA) {
+            this.registerActivity(activity);
+        }
 
-for (const activity of ACTIVITY_DATA) {
-    this.registerActivity(activity);
-}
+        for (const activity of ACTIVITY_DATA) {
+            this.createActivityButton(activity.id);
+        }
 
-for (const activity of ACTIVITY_DATA) {
-    this.createActivityButton(activity.id);
-}
+        document
+            .getElementById("startButton")
+            .addEventListener("click", () => {
+                this.startAdventure();
+            });
 
-console.log(this.activities);
-    
-}
+        console.log(this.activities);
+    }
 
-registerActivity(activityData) {
+    startAdventure() {
 
-    this.activities[activityData.id] = new Activity(activityData);
+        document
+            .getElementById("welcomeScreen")
+            .classList.add("hidden");
 
-}
+        document
+            .getElementById("gameScreen")
+            .classList.remove("hidden");
 
-createActivityButton(activityId) {
+    }
 
-    const button = document.createElement("button");
+    registerActivity(activityData) {
 
-    const activity = this.activities[activityId];
+        this.activities[activityData.id] =
+            new Activity(activityData);
 
-    button.textContent =
-        `${activity.icon} ${activity.name}`;
+    }
 
-    button.addEventListener("click", () => {
-        this.completeActivity(button, activityId);
-    });
+    createActivityButton(activityId) {
 
-   this.generatedActivities.appendChild(button);
+        const button = document.createElement("button");
 
-}
+        const activity = this.activities[activityId];
 
-displayActivityButton(button) {
+        button.textContent =
+            `${activity.icon} ${activity.name}`;
 
-document.getElementById("message").innerHTML = activity.message;
+        button.addEventListener("click", () => {
+            this.completeActivity(button, activityId);
+        });
 
-}
+        this.generatedActivities.appendChild(button);
 
-completeActivity(button, activityId) {
+    }
 
-    const activity = this.activities[activityId];
+    completeActivity(button, activityId) {
 
-    console.log(activity);
+        const activity = this.activities[activityId];
 
-    button.textContent =
-        `✅ ${activity.name}`;
+        button.textContent =
+            `✅ ${activity.name}`;
 
-    button.disabled = true;
-    this.completed++;
+        button.disabled = true;
 
-document.getElementById("progress").textContent =
-    `${this.completed} / ${Object.keys(this.activities).length} completed`;
-    
-document.getElementById("message").innerHTML =
-    activity.message;
+        this.completed++;
 
-}
+        document.getElementById("progress").textContent =
+            `${this.completed} / ${Object.keys(this.activities).length} completed`;
+
+        document.getElementById("message").innerHTML =
+            activity.message;
+
+    }
 }
 
 const engine = new Engine();

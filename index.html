@@ -9,26 +9,49 @@
 </head>
 
 <body>
+
 <div class="sun">☀️</div>
 <div class="cloud">☁️</div>
 
-<div class="container">
+<!-- Welcome Screen -->
 
-        <h1>🌱 Noah's World</h1>
+<div id="welcomeScreen" class="container">
 
-        <h2>Today's Adventure</h2>
-          <p id="progress">0 / 4 completed</p>
+    <h1>🌱 Noah's World</h1>
 
-          <div id="generatedActivities"></div>
+    <h2>Welcome!</h2>
 
-     <div id="activities">
+    <p>
+        A fun world made especially for Noah.
+    </p>
 
+    <button id="startButton">
+        🌻 Start Adventure
+    </button>
+
+</div>
+
+<!-- Game Screen -->
+
+<div id="gameScreen" class="container hidden">
+
+    <h1>🌱 Noah's World</h1>
+
+    <h2>Today's Adventure</h2>
+
+    <p id="progress">0 / 4 completed</p>
+
+    <div id="generatedActivities"></div>
+
+    <div id="activities">
 
         <p id="message">
             Welcome Noah! Let's begin today's adventure.
         </p>
 
     </div>
+
+</div>
 
 <script src="app/data/activities.js"></script>
 <script src="app/activities.js"></script>
