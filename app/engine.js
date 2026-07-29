@@ -20,6 +20,11 @@ class Engine {
 this.activityRegistry = new Registry("Activity");
 
 this.world = new WorldSystem(this.eventBus);
+this.locationSystem =
+    new LocationSystem(
+        this.eventBus,
+        this.world
+    );
 this.world.loadWorld({
 
     name: "Noah's World",
@@ -52,6 +57,18 @@ this.eventBus.subscribe(
         console.log(
             "Activity completed event received:",
             data
+        );
+
+    }
+);
+
+this.eventBus.subscribe(
+    "location_selected",
+    (location) => {
+
+        console.log(
+            "Location selected:",
+            location
         );
 
     }
