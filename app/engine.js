@@ -9,8 +9,10 @@ class Engine {
             new WorldState();
 
 
+
         this.contentLoader =
             new ContentLoader();
+
 
 
         this.contentManager =
@@ -23,6 +25,12 @@ class Engine {
 
 
 
+        this.systemManager =
+            new SystemManager();
+
+
+
+
         this.saveSystem =
             new SaveSystem(
                 this.eventBus,
@@ -30,7 +38,14 @@ class Engine {
             );
 
 
+        this.systemManager.register(
+            "save",
+            this.saveSystem
+        );
+
+
         this.saveSystem.load();
+
 
 
 
@@ -41,6 +56,13 @@ class Engine {
             );
 
 
+        this.systemManager.register(
+            "progress",
+            this.progressSystem
+        );
+
+
+
 
         this.rewardSystem =
             new RewardSystem(
@@ -49,12 +71,26 @@ class Engine {
             );
 
 
+        this.systemManager.register(
+            "reward",
+            this.rewardSystem
+        );
+
+
+
 
         this.achievementSystem =
             new AchievementSystem(
                 this.eventBus,
                 this.rewardSystem
             );
+
+
+        this.systemManager.register(
+            "achievement",
+            this.achievementSystem
+        );
+
 
 
 
@@ -71,7 +107,10 @@ class Engine {
 
 
 
-        this.navigation.show("welcomeScreen");
+        this.navigation.show(
+            "welcomeScreen"
+        );
+
 
 
 
@@ -81,12 +120,26 @@ class Engine {
             );
 
 
+        this.systemManager.register(
+            "world",
+            this.world
+        );
+
+
+
 
         this.locationSystem =
             new LocationSystem(
                 this.eventBus,
                 this.world
             );
+
+
+        this.systemManager.register(
+            "location",
+            this.locationSystem
+        );
+
 
 
 
@@ -109,6 +162,7 @@ class Engine {
 
             }
         );
+
 
 
 
@@ -137,7 +191,6 @@ class Engine {
 
             }
         );
-
 
 
 
@@ -193,6 +246,7 @@ class Engine {
                     return;
 
                 }
+
 
 
 
@@ -277,7 +331,6 @@ class Engine {
 
             }
         );
-
 
 
 
