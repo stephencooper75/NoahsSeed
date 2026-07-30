@@ -8,6 +8,9 @@ class Engine {
         this.worldState =
             new WorldState();
 
+            this.contentLoader =
+    new ContentLoader();
+
 this.saveSystem =
     new SaveSystem(
         this.eventBus,
@@ -113,7 +116,18 @@ this.progressSystem =
 
                 activityContainer.innerHTML = "";
 
+if (location.activities.length === 0) {
 
+    activityContainer.innerHTML =
+    `
+    <p>
+    ✨ More adventures coming soon!
+    </p>
+    `;
+
+    return;
+
+}
 
                 for (const activityId of location.activities) {
 
