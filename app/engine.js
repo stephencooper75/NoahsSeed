@@ -8,35 +8,48 @@ class Engine {
         this.worldState =
             new WorldState();
 
-            this.contentLoader =
-    new ContentLoader();
 
-this.saveSystem =
-    new SaveSystem(
-        this.eventBus,
-        this.worldState
-    );
+        this.contentLoader =
+            new ContentLoader();
 
 
-this.saveSystem.load();
+        this.loadActivities();
 
-this.progressSystem =
-    new ProgressSystem(
-        this.eventBus,
-        this.worldState
-    );
+
+
+        this.saveSystem =
+            new SaveSystem(
+                this.eventBus,
+                this.worldState
+            );
+
+
+        this.saveSystem.load();
+
+
+
+        this.progressSystem =
+            new ProgressSystem(
+                this.eventBus,
+                this.worldState
+            );
+
 
 
         this.navigation = new NavigationSystem();
+
 
         this.navigation.register("welcomeScreen");
         this.navigation.register("locationScreen");
         this.navigation.register("gameScreen");
 
+
         this.navigation.show("welcomeScreen");
 
 
+
         this.world = new WorldSystem(this.eventBus);
+
 
 
         this.locationSystem =
@@ -46,7 +59,9 @@ this.progressSystem =
             );
 
 
+
         this.world.loadWorld(NOAH_WORLD);
+
 
 
 
@@ -61,6 +76,7 @@ this.progressSystem =
 
             }
         );
+
 
 
 
@@ -90,12 +106,15 @@ this.progressSystem =
 
 
 
+
+
         this.eventBus.subscribe(
             "location_selected",
             (location) => {
 
 
                 this.navigation.show("gameScreen");
+
 
 
                 document
@@ -108,34 +127,41 @@ this.progressSystem =
 
 
 
+
                 const activityContainer =
                     document.getElementById(
                         "generatedActivities"
                     );
 
 
+
                 activityContainer.innerHTML = "";
 
-if (location.activities.length === 0) {
-
-    activityContainer.innerHTML =
-    `
-    <p>
-    ✨ More adventures coming soon!
-    </p>
-    `;
-
-    return;
-
-}
-
-                for (const activityId of location.activities) {
 
 
-                    const activity =
-                        ACTIVITY_LIBRARY[activityId];
+
+                if (location.activities.length === 0) {
+
+                    activityContainer.innerHTML =
+                    `
+                    <p>
+                    ✨ More adventures coming soon!
+                    </p>
+                    `;
+
+                    return;
+
+                }
 
 
+for (const activityId of location.activities) {
+
+
+    const activity =
+        this.contentLoader.get(
+            "activities",
+            activityId
+        );
 
                     const button =
                         document.createElement("button");
@@ -147,9 +173,12 @@ if (location.activities.length === 0) {
 
 
 
+
+
                     button.addEventListener(
                         "click",
                         () => {
+
 
 
                             document
@@ -159,6 +188,7 @@ if (location.activities.length === 0) {
                                 <h2>${activity.icon} ${activity.name}</h2>
                                 <p>${activity.message}</p>
                                 `;
+
 
 
 
@@ -184,6 +214,9 @@ if (location.activities.length === 0) {
 
 
 
+
+
+
         document
             .getElementById("startButton")
             .addEventListener(
@@ -194,6 +227,7 @@ if (location.activities.length === 0) {
                         "locationScreen"
                     );
 
+
                     this.locationSystem
                         .displayLocations();
 
@@ -202,6 +236,24 @@ if (location.activities.length === 0) {
 
 
     }
+
+
+
+
+    loadActivities() {
+
+        for (const activity of ACTIVITY_DATA) {
+
+            this.contentLoader.register(
+                "activities",
+                activity.id,
+                activity
+            );
+
+        }
+
+    }
+
 
 }
 
