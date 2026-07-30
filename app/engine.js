@@ -28,7 +28,14 @@ class Engine {
         this.systemManager =
             new SystemManager();
 
+this.entitySystem =
+    new EntitySystem();
 
+
+this.systemManager.register(
+    "entity",
+    this.entitySystem
+);
 
 
         this.saveSystem =
