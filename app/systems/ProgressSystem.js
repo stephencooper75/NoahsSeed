@@ -53,6 +53,14 @@ class ProgressSystem {
 
 
 
+    getLevel() {
+
+        return Math.floor(this.xp / 10) + 1;
+
+    }
+
+
+
     updateDisplay() {
 
         if (!this.display) {
@@ -72,6 +80,10 @@ class ProgressSystem {
 
         <br>
 
+        🌿 Level: ${this.getLevel()}
+
+        <br>
+
         🏆 Activities completed:
         ${this.completedActivities.length}
         `;
@@ -85,6 +97,9 @@ class ProgressSystem {
         return {
 
             xp: this.xp,
+
+            level:
+                this.getLevel(),
 
             completed:
                 this.completedActivities.length
