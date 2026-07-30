@@ -50,6 +50,27 @@ Responsibilities include:
 
 ---
 
+## World State
+
+Responsible for representing the current state of the child's world.
+
+World State stores information required to rebuild the world.
+
+Examples include:
+
+- Progress
+- Inventory
+- Rewards
+- Garden state
+- Character state
+- World changes
+
+World State does not control behaviour.
+
+Systems modify World State through defined interactions.
+
+The Save System stores and restores World State.
+
 ## Activity System
 
 Responsible for everything the child can do.
