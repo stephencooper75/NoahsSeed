@@ -15,7 +15,11 @@ class Engine {
 
         this.loadActivities();
 
-this.loadRewards();
+        this.loadRewards();
+
+        this.loadAchievements();
+
+
 
         this.saveSystem =
             new SaveSystem(
@@ -34,33 +38,45 @@ this.loadRewards();
                 this.worldState
             );
 
-            this.rewardSystem =
-    new RewardSystem(
-        this.eventBus,
-        this.worldState
-    );
 
-    console.log("Creating AchievementSystem");
-    
-    this.achievementSystem =
-    new AchievementSystem(
-        this.eventBus,
-        this.rewardSystem
-    );
 
-        this.navigation = new NavigationSystem();
+        this.rewardSystem =
+            new RewardSystem(
+                this.eventBus,
+                this.worldState
+            );
+
+
+
+        this.achievementSystem =
+            new AchievementSystem(
+                this.eventBus,
+                this.rewardSystem
+            );
+
+
+
+        this.navigation =
+            new NavigationSystem();
+
 
 
         this.navigation.register("welcomeScreen");
+
         this.navigation.register("locationScreen");
+
         this.navigation.register("gameScreen");
+
 
 
         this.navigation.show("welcomeScreen");
 
 
 
-        this.world = new WorldSystem(this.eventBus);
+        this.world =
+            new WorldSystem(
+                this.eventBus
+            );
 
 
 
@@ -72,7 +88,9 @@ this.loadRewards();
 
 
 
-        this.world.loadWorld(NOAH_WORLD);
+        this.world.loadWorld(
+            NOAH_WORLD
+        );
 
 
 
@@ -88,6 +106,7 @@ this.loadRewards();
 
             }
         );
+
 
 
 
@@ -120,12 +139,15 @@ this.loadRewards();
 
 
 
+
         this.eventBus.subscribe(
             "location_selected",
             (location) => {
 
 
-                this.navigation.show("gameScreen");
+                this.navigation.show(
+                    "gameScreen"
+                );
 
 
 
@@ -152,7 +174,10 @@ this.loadRewards();
 
 
 
-                if (location.activities.length === 0) {
+
+                if (
+                    location.activities.length === 0
+                ) {
 
                     activityContainer.innerHTML =
                     `
@@ -166,17 +191,40 @@ this.loadRewards();
                 }
 
 
-for (const activityId of location.activities) {
 
 
-    const activity =
-        this.contentLoader.get(
-            "activities",
-            activityId
-        );
+                for (
+                    const activityId of location.activities
+                ) {
+
+
+                    const activity =
+                        this.contentLoader.get(
+                            "activities",
+                            activityId
+                        );
+
+
+
+                    if (!activity) {
+
+                        console.log(
+                            "Activity not found:",
+                            activityId
+                        );
+
+                        continue;
+
+                    }
+
+
+
+
 
                     const button =
-                        document.createElement("button");
+                        document.createElement(
+                            "button"
+                        );
 
 
 
@@ -217,7 +265,9 @@ for (const activityId of location.activities) {
 
 
 
-                    activityContainer.appendChild(button);
+                    activityContainer.appendChild(
+                        button
+                    );
 
                 }
 
@@ -254,7 +304,9 @@ for (const activityId of location.activities) {
 
     loadActivities() {
 
-        for (const activity of ACTIVITY_DATA) {
+        for (
+            const activity of ACTIVITY_DATA
+        ) {
 
             this.contentLoader.register(
                 "activities",
@@ -267,19 +319,43 @@ for (const activityId of location.activities) {
     }
 
 
+
+
     loadRewards() {
 
-    for (const reward of REWARD_DATA) {
+        for (
+            const reward of REWARD_DATA
+        ) {
 
-        this.contentLoader.register(
-            "rewards",
-            reward.id,
-            reward
-        );
+            this.contentLoader.register(
+                "rewards",
+                reward.id,
+                reward
+            );
+
+        }
 
     }
 
-}
+
+
+
+    loadAchievements() {
+
+        for (
+            const achievement of ACHIEVEMENT_DATA
+        ) {
+
+            this.contentLoader.register(
+                "achievements",
+                achievement.id,
+                achievement
+            );
+
+        }
+
+    }
+
 
 }
 
