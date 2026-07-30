@@ -1,14 +1,31 @@
 class ProgressSystem {
 
-    constructor(eventBus) {
+    constructor(
+        eventBus,
+        worldState
+    ) {
 
         this.eventBus = eventBus;
 
-        this.xp = 0;
+        this.worldState = worldState;
 
-        this.level = 1;
 
-        this.completedActivities = [];
+        if (!this.worldState.get("progression").xp) {
+
+            this.worldState.set(
+                "progression",
+                {
+                    xp: 0,
+
+                    level: 1,
+
+                    completedActivities: []
+
+                }
+            );
+
+        }
+
 
 
         this.display =
@@ -36,29 +53,42 @@ class ProgressSystem {
 
     completeActivity(activity) {
 
-        this.xp += 1;
+
+        const progression =
+            this.worldState.get(
+                "progression"
+            );
 
 
-        this.completedActivities.push(
+        progression.xp += 1;
+
+
+        progression.completedActivities.push(
             activity.id
         );
 
 
         const previousLevel =
-            this.level;
+            progression.level;
 
 
-        this.level =
-            this.getLevel();
+        progression.level =
+            this.getLevel(
+                progression.xp
+            );
 
 
 
-        if (this.level > previousLevel) {
+        if (
+            progression.level >
+            previousLevel
+        ) {
 
             this.eventBus.publish(
                 "level_up",
                 {
-                    level: this.level
+                    level:
+                        progression.level
                 }
             );
 
@@ -78,15 +108,16 @@ class ProgressSystem {
 
 
 
-    getLevel() {
+    getLevel(xp) {
 
-        return Math.floor(this.xp / 10) + 1;
+        return Math.floor(xp / 10) + 1;
 
     }
 
 
 
     updateDisplay() {
+
 
         if (!this.display) {
 
@@ -95,22 +126,28 @@ class ProgressSystem {
         }
 
 
+        const progression =
+            this.worldState.get(
+                "progression"
+            );
+
+
         this.display.innerHTML =
         `
         🌱 Nature Progress
 
         <br>
 
-        ⭐ XP: ${this.xp}
+        ⭐ XP: ${progression.xp}
 
         <br>
 
-        🌿 Level: ${this.level}
+        🌿 Level: ${progression.level}
 
         <br>
 
         🏆 Activities completed:
-        ${this.completedActivities.length}
+        ${progression.completedActivities.length}
         `;
 
     }
@@ -119,16 +156,9 @@ class ProgressSystem {
 
     getProgress() {
 
-        return {
-
-            xp: this.xp,
-
-            level: this.level,
-
-            completed:
-                this.completedActivities.length
-
-        };
+        return this.worldState.get(
+            "progression"
+        );
 
     }
 

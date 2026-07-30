@@ -5,10 +5,16 @@ class Engine {
         this.eventBus = new EventBus();
 
 
-        this.progressSystem =
-            new ProgressSystem(
-                this.eventBus
-            );
+        this.worldState =
+            new WorldState();
+
+
+
+this.progressSystem =
+    new ProgressSystem(
+        this.eventBus,
+        this.worldState
+    );
 
 
         this.navigation = new NavigationSystem();
