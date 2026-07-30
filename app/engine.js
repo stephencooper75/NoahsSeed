@@ -15,7 +15,7 @@ class Engine {
 
         this.loadActivities();
 
-
+this.loadRewards();
 
         this.saveSystem =
             new SaveSystem(
@@ -34,7 +34,19 @@ class Engine {
                 this.worldState
             );
 
+            this.rewardSystem =
+    new RewardSystem(
+        this.eventBus,
+        this.worldState
+    );
 
+    console.log("Creating AchievementSystem");
+    
+    this.achievementSystem =
+    new AchievementSystem(
+        this.eventBus,
+        this.rewardSystem
+    );
 
         this.navigation = new NavigationSystem();
 
@@ -254,6 +266,20 @@ for (const activityId of location.activities) {
 
     }
 
+
+    loadRewards() {
+
+    for (const reward of REWARD_DATA) {
+
+        this.contentLoader.register(
+            "rewards",
+            reward.id,
+            reward
+        );
+
+    }
+
+}
 
 }
 
