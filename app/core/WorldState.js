@@ -4,23 +4,91 @@ class WorldState {
 
         this.data = {
 
-            version: 1,
+            metadata: {
 
-            player: {},
+                version: 1,
 
-            world: {},
+                created:
+                    new Date().toISOString(),
 
-            progression: {},
+                lastSaved:
+                    null
 
-            inventory: {},
+            },
 
-            rewards: {},
 
-            economy: {},
+            player: {
 
-            locations: {},
+                identity: {},
 
-            entities: {}
+                preferences: {}
+
+            },
+
+
+            progression: {
+
+                xp: 0,
+
+                levels: {},
+
+                achievements: []
+
+            },
+
+
+            world: {
+
+                unlockedLocations: [],
+
+                changes: {}
+
+            },
+
+
+            collections: {
+
+                discoveries: [],
+
+                collectibles: []
+
+            },
+
+
+            inventory: {
+
+                items: []
+
+            },
+
+
+            economy: {
+
+                currencies: {}
+
+            },
+
+
+            entities: {
+
+                plants: [],
+
+                pets: [],
+
+                characters: []
+
+            },
+
+
+            environment: {
+
+                weather: {},
+
+                time: {},
+
+                seasons: {}
+
+            }
 
         };
 
@@ -47,6 +115,15 @@ class WorldState {
     getState() {
 
         return this.data;
+
+    }
+
+
+
+    updateLastSaved() {
+
+        this.data.metadata.lastSaved =
+            new Date().toISOString();
 
     }
 

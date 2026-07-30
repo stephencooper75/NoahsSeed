@@ -8,7 +8,13 @@ class Engine {
         this.worldState =
             new WorldState();
 
+this.saveSystem =
+    new SaveSystem(
+        this.worldState
+    );
 
+
+this.saveSystem.load();
 
 this.progressSystem =
     new ProgressSystem(
