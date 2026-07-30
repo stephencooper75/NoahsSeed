@@ -10,6 +10,7 @@ class Engine {
 
 this.saveSystem =
     new SaveSystem(
+        this.eventBus,
         this.worldState
     );
 

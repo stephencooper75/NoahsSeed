@@ -1,11 +1,26 @@
 class SaveSystem {
 
-    constructor(worldState) {
+    constructor(
+        eventBus,
+        worldState
+    ) {
+
+        this.eventBus = eventBus;
 
         this.worldState = worldState;
 
         this.saveKey =
             "noahs_seed_world";
+
+
+        eventBus.subscribe(
+            "activity_completed",
+            () => {
+
+                this.save();
+
+            }
+        );
 
     }
 
