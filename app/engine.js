@@ -13,11 +13,13 @@ class Engine {
             new ContentLoader();
 
 
-        this.loadActivities();
+        this.contentManager =
+            new ContentManager(
+                this.contentLoader
+            );
 
-        this.loadRewards();
 
-        this.loadAchievements();
+        this.contentManager.loadAll();
 
 
 
@@ -95,6 +97,7 @@ class Engine {
 
 
 
+
         this.eventBus.subscribe(
             "activity_completed",
             (data) => {
@@ -134,6 +137,7 @@ class Engine {
 
             }
         );
+
 
 
 
@@ -240,7 +244,6 @@ class Engine {
                         () => {
 
 
-
                             document
                                 .getElementById("message")
                                 .innerHTML =
@@ -260,6 +263,7 @@ class Engine {
                                 }
                             );
 
+
                         }
                     );
 
@@ -273,6 +277,7 @@ class Engine {
 
             }
         );
+
 
 
 
@@ -298,64 +303,6 @@ class Engine {
 
 
     }
-
-
-
-
-    loadActivities() {
-
-        for (
-            const activity of ACTIVITY_DATA
-        ) {
-
-            this.contentLoader.register(
-                "activities",
-                activity.id,
-                activity
-            );
-
-        }
-
-    }
-
-
-
-
-    loadRewards() {
-
-        for (
-            const reward of REWARD_DATA
-        ) {
-
-            this.contentLoader.register(
-                "rewards",
-                reward.id,
-                reward
-            );
-
-        }
-
-    }
-
-
-
-
-    loadAchievements() {
-
-        for (
-            const achievement of ACHIEVEMENT_DATA
-        ) {
-
-            this.contentLoader.register(
-                "achievements",
-                achievement.id,
-                achievement
-            );
-
-        }
-
-    }
-
 
 }
 
