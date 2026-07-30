@@ -49,6 +49,32 @@ class Engine {
 
 
         this.eventBus.subscribe(
+            "level_up",
+            (data) => {
+
+                document
+                    .getElementById("message")
+                    .innerHTML =
+                    `
+                    <h2>🌟 Level Up!</h2>
+                    <p>
+                    Congratulations Noah!
+                    You reached Nature Level ${data.level}.
+                    </p>
+                    `;
+
+
+                console.log(
+                    "Level up event received:",
+                    data
+                );
+
+            }
+        );
+
+
+
+        this.eventBus.subscribe(
             "location_selected",
             (location) => {
 

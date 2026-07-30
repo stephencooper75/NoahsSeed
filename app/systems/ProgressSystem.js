@@ -2,7 +2,11 @@ class ProgressSystem {
 
     constructor(eventBus) {
 
+        this.eventBus = eventBus;
+
         this.xp = 0;
+
+        this.level = 1;
 
         this.completedActivities = [];
 
@@ -38,6 +42,27 @@ class ProgressSystem {
         this.completedActivities.push(
             activity.id
         );
+
+
+        const previousLevel =
+            this.level;
+
+
+        this.level =
+            this.getLevel();
+
+
+
+        if (this.level > previousLevel) {
+
+            this.eventBus.publish(
+                "level_up",
+                {
+                    level: this.level
+                }
+            );
+
+        }
 
 
         this.updateDisplay();
@@ -80,7 +105,7 @@ class ProgressSystem {
 
         <br>
 
-        🌿 Level: ${this.getLevel()}
+        🌿 Level: ${this.level}
 
         <br>
 
@@ -98,8 +123,7 @@ class ProgressSystem {
 
             xp: this.xp,
 
-            level:
-                this.getLevel(),
+            level: this.level,
 
             completed:
                 this.completedActivities.length
