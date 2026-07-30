@@ -5,6 +5,12 @@ class Engine {
         this.eventBus = new EventBus();
 
 
+        this.progressSystem =
+            new ProgressSystem(
+                this.eventBus
+            );
+
+
         this.navigation = new NavigationSystem();
 
         this.navigation.register("welcomeScreen");
