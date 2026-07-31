@@ -7,17 +7,17 @@ class EntitySystem {
         this.worldState =
             worldState;
 
-
         this.entities =
             this.worldState.data.entities.registry;
 
+        this.categories =
+            this.worldState.data.entities.categories;
 
     }
 
 
 
     create(data) {
-
 
         const entity =
             new Entity(
@@ -27,6 +27,25 @@ class EntitySystem {
 
         this.entities[entity.id] =
             entity.getData();
+
+
+        if (
+            this.categories[entity.type]
+        ) {
+
+            if (
+                !this.categories[entity.type].includes(
+                    entity.id
+                )
+            ) {
+
+                this.categories[entity.type].push(
+                    entity.id
+                );
+
+            }
+
+        }
 
 
         console.log(
@@ -45,10 +64,8 @@ class EntitySystem {
 
     get(id) {
 
-
         const data =
             this.entities[id];
-
 
 
         if (!data) {
@@ -58,11 +75,9 @@ class EntitySystem {
         }
 
 
-
         return new Entity(
             data
         );
-
 
     }
 
@@ -71,6 +86,26 @@ class EntitySystem {
 
 
     remove(id) {
+
+        const entity =
+            this.get(id);
+
+
+        if (entity) {
+
+            if (
+                this.categories[entity.type]
+            ) {
+
+                this.categories[entity.type] =
+                    this.categories[entity.type].filter(
+                        entityId =>
+                            entityId !== id
+                    );
+
+            }
+
+        }
 
 
         delete this.entities[id];
@@ -92,10 +127,8 @@ class EntitySystem {
         changes
     ) {
 
-
         const entity =
             this.get(id);
-
 
 
         if (!entity) {
@@ -110,16 +143,13 @@ class EntitySystem {
         }
 
 
-
         entity.updateState(
             changes
         );
 
 
-
         this.entities[id] =
             entity.getData();
-
 
 
         console.log(
@@ -138,11 +168,8 @@ class EntitySystem {
 
     getAll() {
 
-
         return this.entities;
 
-
     }
-
 
 }
