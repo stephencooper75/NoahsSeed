@@ -69,26 +69,38 @@ class WorldState {
             },
 
 
-            entities: {
+entities: {
 
-                plants: [],
+    registry: {},
 
-                pets: [],
+    categories: {
 
-                characters: []
+        plants: [],
 
-            },
+        pets: [],
+
+        characters: [],
+
+        items: [],
+
+        vehicles: [],
+
+        buildings: []
+
+    }
+
+},
 
 
-            environment: {
+environment: {
 
-                weather: {},
+    weather: {},
 
-                time: {},
+    time: {},
 
-                seasons: {}
+    seasons: {}
 
-            }
+}
 
         };
 

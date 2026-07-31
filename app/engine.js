@@ -28,30 +28,33 @@ class Engine {
         this.systemManager =
             new SystemManager();
 
+this.saveSystem =
+    new SaveSystem(
+        this.eventBus,
+        this.worldState
+    );
+
+
+this.systemManager.register(
+    "save",
+    this.saveSystem
+);
+
+
+this.saveSystem.load();
+
+
+
 this.entitySystem =
-    new EntitySystem();
+    new EntitySystem(
+        this.worldState
+    );
 
 
 this.systemManager.register(
     "entity",
     this.entitySystem
 );
-
-
-        this.saveSystem =
-            new SaveSystem(
-                this.eventBus,
-                this.worldState
-            );
-
-
-        this.systemManager.register(
-            "save",
-            this.saveSystem
-        );
-
-
-        this.saveSystem.load();
 
 
 

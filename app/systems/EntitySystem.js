@@ -1,17 +1,32 @@
 class EntitySystem {
 
-    constructor() {
+    constructor(
+        worldState
+    ) {
 
-        this.entities = {};
+        this.worldState =
+            worldState;
+
+
+        this.entities =
+            this.worldState.data.entities.registry;
+
 
     }
 
 
 
-    create(entity) {
+    create(data) {
 
 
-        this.entities[entity.id] = entity;
+        const entity =
+            new Entity(
+                data
+            );
+
+
+        this.entities[entity.id] =
+            entity.getData();
 
 
         console.log(
@@ -26,11 +41,32 @@ class EntitySystem {
 
 
 
+
+
     get(id) {
 
-        return this.entities[id];
+
+        const data =
+            this.entities[id];
+
+
+
+        if (!data) {
+
+            return null;
+
+        }
+
+
+
+        return new Entity(
+            data
+        );
+
 
     }
+
+
 
 
 
@@ -49,6 +85,8 @@ class EntitySystem {
 
 
 
+
+
     update(
         id,
         changes
@@ -56,7 +94,7 @@ class EntitySystem {
 
 
         const entity =
-            this.entities[id];
+            this.get(id);
 
 
 
@@ -73,10 +111,15 @@ class EntitySystem {
 
 
 
-        Object.assign(
-            entity,
+        entity.updateState(
             changes
         );
+
+
+
+        this.entities[id] =
+            entity.getData();
+
 
 
         console.log(
@@ -91,10 +134,15 @@ class EntitySystem {
 
 
 
+
+
     getAll() {
+
 
         return this.entities;
 
+
     }
+
 
 }
