@@ -2,141 +2,221 @@ class WorldState {
 
     constructor() {
 
+
         this.data = {
+
 
             metadata: {
 
-                version: 1,
+                version: 2,
 
                 created:
                     new Date().toISOString(),
 
                 lastSaved:
-                    null
+                    null,
+
+                playTime: 0
 
             },
 
-
-            player: {
-
-                identity: {},
-
-                preferences: {}
-
-            },
-
-
-            progression: {
-
-                xp: 0,
-
-                levels: {},
-
-                achievements: []
-
-            },
 
 
             world: {
 
-                unlockedLocations: [],
+                activeWorld:
+                    "noahs_world",
 
-                changes: {}
+
+                activeLocation:
+                    null,
+
+
+                activePlayerId:
+                    null,
+
+
+                unlockedLocations:
+                    [],
+
+
+                changes:
+                    {},
+
+
+                time: {
+
+                    day: 1,
+
+                    hour: 8,
+
+                    minute: 0
+
+                },
+
+
+                weather: {
+
+                    type:
+                        "sunny"
+
+                },
+
+
+                season:
+                    "spring"
 
             },
 
 
+
+            entities: {
+
+
+                registry: {},
+
+
+                categories: {
+
+
+                    plants: [],
+
+                    pets: [],
+
+                    characters: [],
+
+                    items: [],
+
+                    vehicles: [],
+
+                    buildings: []
+
+                }
+
+            },
+
+
+
+            progression: {
+
+
+                xp: 0,
+
+
+                level: 1,
+
+
+                achievements: [],
+
+
+                completedActivities: []
+
+            },
+
+
+
             collections: {
 
+
                 discoveries: [],
+
 
                 collectibles: []
 
             },
 
 
-            inventory: {
-
-                items: []
-
-            },
-
 
             economy: {
+
 
                 currencies: {}
 
             },
 
 
-entities: {
 
-    registry: {},
-
-    categories: {
-
-        plants: [],
-
-        pets: [],
-
-        characters: [],
-
-        items: [],
-
-        vehicles: [],
-
-        buildings: []
-
-    }
-
-},
+            settings: {
 
 
-environment: {
+                language:
+                    "en",
 
-    weather: {},
 
-    time: {},
+                difficulty:
+                    "adaptive"
 
-    seasons: {}
 
-}
+            },
+
+
+
+            learnerProfiles: {
+
+
+                registry: {}
+
+            }
+
+
 
         };
 
+
     }
+
+
 
 
 
     get(path) {
 
+
         return this.data[path];
 
+
+    }
+
+
+
+
+
+    set(
+        path,
+        value
+    ) {
+
+
+        this.data[path] =
+            value;
+
+
     }
 
 
-
-    set(path, value) {
-
-        this.data[path] = value;
-
-    }
 
 
 
     getState() {
 
+
         return this.data;
 
+
     }
+
+
 
 
 
     updateLastSaved() {
 
+
         this.data.metadata.lastSaved =
             new Date().toISOString();
 
+
     }
+
 
 }

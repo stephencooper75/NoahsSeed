@@ -64,6 +64,24 @@
 
     <div id="locationInfo"></div>
 
+    <!-- Garden Screen -->
+
+<div id="gardenScreen" class="container hidden">
+
+    <h1>🌳 Noah's Garden</h1>
+
+    <div id="gardenContents"></div>
+
+    <br>
+
+    <button id="backToGameButton">
+
+        ⬅ Back to Activities
+
+    </button>
+
+</div>
+
 
 <div id="progressDisplay">
 
@@ -87,6 +105,16 @@
 
 <div id="generatedActivities"></div>
 
+<!--
+<h3>🌳 Garden</h3>
+
+<div id="gardenView">
+
+    No plants yet.
+
+</div>
+-->
+
 
 </div>
 
@@ -95,6 +123,7 @@
 <script src="app/core/EventBus.js"></script>
 <script src="app/core/Registry.js"></script>
 <script src="app/core/WorldState.js"></script>
+<script src="app/core/WorldClock.js"></script>
 <script src="app/core/SaveSystem.js"></script>
 <script src="app/core/ContentLoader.js"></script>
 <script src="app/core/managers/ContentManager.js"></script>
@@ -122,7 +151,12 @@
 <script src="app/systems/AchievementSystem.js"></script>
 
 <script src="app/core/entities/Entity.js"></script>
+<script src="app/core/Activity.js"></script>
+
 <script src="app/systems/EntitySystem.js"></script>
+<script src="app/systems/ActivitySystem.js"></script>
+
+<script src="app/presentation/GardenRenderer.js"></script>
 
 <script src="app/engine.js"></script>
 

@@ -163,7 +163,26 @@ class EntitySystem {
     }
 
 
+getByCategory(category) {
 
+    if (
+        !this.categories[category]
+    ) {
+
+        return [];
+
+    }
+
+
+    return this.categories[category]
+        .map(
+            id => this.get(id)
+        )
+        .filter(
+            entity => entity !== null
+        );
+
+}
 
 
     getAll() {

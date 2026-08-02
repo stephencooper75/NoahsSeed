@@ -23,6 +23,7 @@ body {
 }
 
 
+
 .container {
 
     background: rgba(255,255,255,0.92);
@@ -40,6 +41,7 @@ body {
 }
 
 
+
 #welcomeScreen,
 #locationScreen,
 #gameScreen {
@@ -49,7 +51,88 @@ body {
 }
 
 
-/* Location and activity information areas */
+
+.hidden {
+
+    display: none;
+
+}
+
+
+
+/* ----------------------------------
+   Headings
+---------------------------------- */
+
+h1 {
+
+    color: #2b7a2b;
+
+    margin-bottom: 5px;
+
+}
+
+h2 {
+
+    color: #444;
+
+    margin-top: 0;
+
+}
+
+
+
+/* ----------------------------------
+   Buttons
+---------------------------------- */
+
+button {
+
+    width: 100%;
+
+    padding: 16px;
+
+    margin: 10px 0;
+
+    font-size: 18px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #67c55a;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: all .25s ease;
+
+}
+
+button:hover {
+
+    background: #4da842;
+
+    transform: scale(1.03);
+
+}
+
+button:disabled {
+
+    background: #bbbbbb;
+
+    cursor: default;
+
+    transform: none;
+
+}
+
+
+
+/* ----------------------------------
+   Layout Areas
+---------------------------------- */
 
 #locationInfo {
 
@@ -57,6 +140,11 @@ body {
 
 }
 
+#generatedActivities {
+
+    min-height: 180px;
+
+}
 
 #message {
 
@@ -76,180 +164,19 @@ body {
 
 }
 
-
-#generatedActivities {
-
-    min-height: 180px;
-
-}
-
-
-h1 {
-
-    color:#2b7a2b;
-
-    margin-bottom:5px;
-
-}
-
-
-h2 {
-
-    color:#444;
-
-    margin-top:0;
-
-}
-
-
-button {
-
-    width:100%;
-
-    padding:16px;
-
-    margin:10px 0;
-
-    font-size:18px;
-
-    border:none;
-
-    border-radius:15px;
-
-    background:#67c55a;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:0.3s;
-
-}
-
-
-button:hover {
-
-    background:#4da842;
-
-    transform:scale(1.03);
-
-}
-
-
-button:disabled {
-
-    background:#bbbbbb;
-
-    cursor:default;
-
-    transform:none;
-
-}
-
-
-#progress {
-
-    font-weight:bold;
-
-    color:#2b7a2b;
-
-}
-
-
-.sun {
-
-    position: fixed;
-
-    top:30px;
-
-    right:40px;
-
-    font-size:70px;
-
-    animation:sunshine 4s ease-in-out infinite;
-
-}
-
-
-.cloud {
-
-    position:fixed;
-
-    top:80px;
-
-    left:60px;
-
-    font-size:55px;
-
-    animation:drift 40s linear infinite;
-
-}
-
-
-@keyframes drift {
-
-    from {
-
-        left:-100px;
-
-    }
-
-    to {
-
-        left:100%;
-
-    }
-
-}
-
-
-@keyframes sunshine {
-
-    0% {
-
-        transform:scale(1);
-
-        filter:brightness(1);
-
-    }
-
-    50% {
-
-        transform:scale(1.08);
-
-        filter:brightness(1.15);
-
-    }
-
-    100% {
-
-        transform:scale(1);
-
-        filter:brightness(1);
-
-    }
-
-}
-
-
-.hidden {
-
-    display:none;
-
-}
-
 #message h2 {
 
     margin: 0;
 
 }
 
-
 #message p {
 
     margin: 5px 0;
 
 }
+
+
 
 #progressDisplay {
 
@@ -264,5 +191,189 @@ button:disabled {
     font-size: 16px;
 
     color: #2b7a2b;
+
+}
+
+
+
+/* ----------------------------------
+   Sky
+---------------------------------- */
+
+.sun {
+
+    position: fixed;
+
+    top: 30px;
+
+    right: 40px;
+
+    font-size: 70px;
+
+    animation: sunshine 4s ease-in-out infinite;
+
+}
+
+.cloud {
+
+    position: fixed;
+
+    top: 80px;
+
+    left: 60px;
+
+    font-size: 55px;
+
+    animation: drift 40s linear infinite;
+
+}
+
+
+
+@keyframes drift {
+
+    from {
+
+        left: -100px;
+
+    }
+
+    to {
+
+        left: 100%;
+
+    }
+
+}
+
+
+
+@keyframes sunshine {
+
+    0% {
+
+        transform: scale(1);
+
+        filter: brightness(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.08);
+
+        filter: brightness(1.15);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+        filter: brightness(1);
+
+    }
+
+}
+
+
+
+/* ----------------------------------
+   Garden
+---------------------------------- */
+
+.gardenGrid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+.gardenPlant {
+
+    background: linear-gradient(
+        180deg,
+        #f8fff4,
+        #e8f7df
+    );
+
+    border: 2px solid #8fd27f;
+
+    border-radius: 18px;
+
+    padding: 15px;
+
+    transition: .25s;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+
+}
+
+.gardenPlant:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 18px rgba(0,0,0,.18);
+
+}
+
+.plantIcon {
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+}
+
+.plantName {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #2b7a2b;
+
+}
+
+.plantStage {
+
+    margin-top: 8px;
+
+    color: #555;
+
+}
+
+.plantWater {
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+}
+
+.gardenEmpty {
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background: rgba(103,197,90,.12);
+
+}
+
+.gardenEmpty h3 {
+
+    color: #2b7a2b;
+
+}
+
+.gardenEmpty p {
+
+    color: #555;
 
 }

@@ -8,10 +8,6 @@ class Engine {
         this.worldState =
             new WorldState();
 
-            
-            this.worldClock =
-    new WorldClock();
-
 
 
         this.contentLoader =
@@ -54,8 +50,8 @@ this.entitySystem =
         this.worldState
     );
 
-this.gardenRenderer =
-    new GardenRenderer(
+    this.gardenView =
+    new GardenView(
         this.entitySystem
     );
 
@@ -288,100 +284,93 @@ document
 
 
 
-const plants =
-    this.entitySystem.getByCategory(
-        "plants"
-    );
+                for (
+                    const activityId of location.activities
+                ) {
 
-const hasPlants =
-    plants.length > 0;
 
-for (const activityId of location.activities) {
+                    const activity =
+                        this.contentLoader.get(
+                            "activities",
+                            activityId
+                        );
 
-    const activity =
-        this.contentLoader.get(
-            "activities",
-            activityId
-        );
 
-    if (!activity) {
 
-        continue;
+                    if (!activity) {
 
-    }
+                        console.log(
+                            "Activity not found:",
+                            activityId
+                        );
 
-    // ---------- Dynamic availability ----------
+                        continue;
 
-    if (
-        activity.id === "water_plants" &&
-        !hasPlants
-    ) {
+                    }
 
-        continue;
 
-    }
 
-    if (
-        activity.id === "discover_insect"
-    ) {
 
-        continue;
 
-    }
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
 
-    // ------------------------------------------
 
-    const button =
-        document.createElement(
-            "button"
-        );
 
-    if (
-        activity.id === "water_plants"
-    ) {
+                    button.textContent =
+                        `${activity.icon} ${activity.name}`;
 
-        button.textContent =
-            "💧 Gently Water Seed";
 
-    }
-    else {
 
-        button.textContent =
-            `${activity.icon} ${activity.name}`;
 
-    }
 
-    button.addEventListener(
-        "click",
-        () => {
+                    button.addEventListener(
+                        "click",
+                        () => {
 
-            document
-                .getElementById("message")
-                .innerHTML =
-                `
-                <h2>${activity.icon} ${activity.name}</h2>
-                <p>${activity.message}</p>
-                `;
 
-            const activityInstance =
-                new Activity(activity);
+                            document
+                                .getElementById("message")
+                                .innerHTML =
+                                `
+                                <h2>${activity.icon} ${activity.name}</h2>
+                                <p>${activity.message}</p>
+                                `;
 
-            this.activitySystem.start(
-                activityInstance
-            );
 
-            this.activitySystem.complete(
-                activityInstance
-            );
 
-        }
-    );
 
-    activityContainer.appendChild(
-        button
-    );
+const activityInstance =
+    new Activity(activity);
 
-}
+this.activitySystem.start(
+    activityInstance
+);
+
+this.activitySystem.complete(
+    activityInstance
+);
+
+/*
+document
+    .getElementById("gardenView")
+    .innerHTML =
+    this.gardenView.render();
+*/
+
+
+                        }
+                    );
+
+
+
+                    activityContainer.appendChild(
+                        button
+                    );
+
+                }
 
             }
         );

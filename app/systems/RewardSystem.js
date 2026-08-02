@@ -25,38 +25,56 @@ class RewardSystem {
 
 
 
-    unlockReward(reward) {
+ unlockReward(reward) {
 
+    if (
+        !this.worldState.data.progression.achievements
+    ) {
 
-        if (
-            !this.worldState.data.progression.achievements
-        ) {
-
-            this.worldState.data.progression.achievements = [];
-
-        }
-
-
-
-        this.worldState.data.progression.achievements.push(
-            reward
-        );
-
-
-
-        console.log(
-            "Reward unlocked:",
-            reward
-        );
-
-
-
-        this.eventBus.publish(
-            "reward_unlocked",
-            reward
-        );
+        this.worldState.data.progression.achievements = [];
 
     }
+
+
+    const alreadyUnlocked =
+        this.worldState.data
+            .progression
+            .achievements
+            .some(
+                achievement =>
+                    achievement.id === reward.id
+            );
+
+
+    if (
+        alreadyUnlocked
+    ) {
+
+        return;
+
+    }
+
+
+    this.worldState.data
+        .progression
+        .achievements
+        .push(
+            reward
+        );
+
+
+    console.log(
+        "Reward unlocked:",
+        reward
+    );
+
+
+    this.eventBus.publish(
+        "reward_unlocked",
+        reward
+    );
+
+}
 
 
 
