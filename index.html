@@ -5,161 +5,273 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Noah's Seed</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="css/style.css">
 
 </head>
 
-
 <body>
 
-<div class="sun">☀️</div>
+    <!-- ===================================================== -->
+    <!-- Background -->
+    <!-- ===================================================== -->
 
-<div class="cloud">☁️</div>
+    <div class="sun">☀️</div>
 
+    <div class="cloud">☁️</div>
 
-<!-- Welcome Screen -->
 
-<div id="welcomeScreen" class="container">
+    <!-- ===================================================== -->
+    <!-- Experience Window -->
+    <!-- ===================================================== -->
 
-    <h1>🌱 Noah's World</h1>
+    <div id="experienceWindow"
+         style="
+            display:none;
+            position:fixed;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            background:white;
+            padding:30px;
+            border:3px solid black;
+            border-radius:15px;
+            z-index:99999;
+            min-width:400px;
+            min-height:250px;
+            box-shadow:0 10px 30px rgba(0,0,0,.35);
+         ">
+    </div>
 
-    <h2>Welcome!</h2>
 
-    <p>
-        A fun world made especially for Noah.
-    </p>
+    <!-- ===================================================== -->
+    <!-- Welcome Screen -->
+    <!-- ===================================================== -->
 
-    <button id="startButton">
-        🌻 Start Adventure
-    </button>
+    <div id="welcomeScreen"
+         class="container">
 
-</div>
+        <h1>🌱 Noah's World</h1>
 
+        <h2>Welcome!</h2>
 
+        <p>
+            A fun world made especially for Noah.
+        </p>
 
-<!-- Location Screen -->
+        <button id="startButton">
+            🌻 Start Adventure
+        </button>
 
-<div id="locationScreen" class="container hidden">
+        <br><br>
 
-    <h1>🌱 Noah's World</h1>
+<button id="spaceInvadersButton">
+    👾 Space Invaders
+</button>
 
-    <h2>Choose your adventure</h2>
+    </div>
 
-    <div id="locations"></div>
 
-</div>
+    <!-- ===================================================== -->
+    <!-- Location Screen -->
+    <!-- ===================================================== -->
 
+    <div id="locationScreen"
+         class="container hidden">
 
+        <h1>🌱 Noah's World</h1>
 
-<!-- Game Screen -->
+        <h2>Choose your adventure</h2>
 
-<div id="gameScreen" class="container hidden">
+        <div id="locations"></div>
 
-    <h1>🌱 Noah's World</h1>
+    </div>
 
 
-    <div id="locationInfo"></div>
+    <!-- ===================================================== -->
+    <!-- Game Screen -->
+    <!-- ===================================================== -->
 
-    <!-- Garden Screen -->
+    <div id="gameScreen"
+         class="container hidden">
 
-<div id="gardenScreen" class="container hidden">
+        <h1>🌱 Noah's World</h1>
 
-    <h1>🌳 Noah's Garden</h1>
+        <div id="locationInfo"></div>
 
-    <div id="gardenContents"></div>
+        <div id="progressDisplay">
 
-    <br>
+            🌱 Nature Progress
 
-    <button id="backToGameButton">
+            <br>
 
-        ⬅ Back to Activities
+            ⭐ XP: 0
 
-    </button>
+            <br>
 
-</div>
+            🏆 Activities completed: 0
 
+        </div>
 
-<div id="progressDisplay">
+        <div id="message">
 
-    🌱 Nature Progress
+            Welcome Noah!
+            Let's begin today's adventure.
 
-    <br>
+        </div>
 
-    ⭐ XP: 0
+        <div id="generatedActivities"></div>
 
-    <br>
+    </div>
 
-    🏆 Activities completed: 0
 
-</div>
+    <!-- ===================================================== -->
+    <!-- Garden -->
+    <!-- ===================================================== -->
 
+    <div id="gardenScreen"
+         class="container hidden">
 
-<div id="message">
-    Welcome Noah! Let's begin today's adventure.
-</div>
+        <h1>🌳 Noah's Garden</h1>
 
+        <div id="gardenContents"></div>
 
-<div id="generatedActivities"></div>
+        <br>
 
-<!--
-<h3>🌳 Garden</h3>
+        <button id="backToGameButton">
 
-<div id="gardenView">
+            ⬅ Back to Activities
 
-    No plants yet.
+        </button>
 
-</div>
--->
+    </div>
 
 
-</div>
+    <!-- ===================================================== -->
+    <!-- Debug -->
+    <!-- ===================================================== -->
 
+    <div id="debugOverlay"
+         style="
+            position:fixed;
+            top:10px;
+            right:10px;
+            background:rgba(0,0,0,.75);
+            color:white;
+            padding:10px;
+            border-radius:10px;
+            font-family:monospace;
+            font-size:13px;
+            z-index:9999;">
 
+        Loading...
 
-<script src="app/core/EventBus.js"></script>
-<script src="app/core/Registry.js"></script>
-<script src="app/core/WorldState.js"></script>
-<script src="app/core/WorldClock.js"></script>
-<script src="app/core/SaveSystem.js"></script>
-<script src="app/core/ContentLoader.js"></script>
-<script src="app/core/managers/ContentManager.js"></script>
-<script src="app/core/managers/SystemManager.js"></script>
+    </div>
 
-<script src="app/data/activities.js"></script>
 
-<script src="content/rewards/rewards.js"></script>
-<script src="content/achievements/achievements.js"></script>
+    <!-- ===================================================== -->
+    <!-- Engine -->
+    <!-- ===================================================== -->
 
-<script src="app/data/activities/activityLibrary.js"></script>
+    <script src="engine/capabilities/Capability.js"></script>
 
-<script src="app/data/worlds/noahsWorld.js"></script>
+    <script src="app/core/Registry.js"></script>
 
-<script src="app/systems/NavigationSystem.js"></script>
+    <script src="engine/ui/UIWindow.js"></script>
 
-<script src="app/systems/WorldSystem.js"></script>
+    <script src="engine/ui/UICapability.js"></script>
 
-<script src="app/systems/LocationSystem.js"></script>
+    <script src="engine/capabilities/ActivityCapability.js"></script>
 
-<script src="app/systems/ProgressSystem.js"></script>
+    <script src="engine/experiences/Experience.js"></script>
 
-<script src="app/systems/RewardSystem.js"></script>
+    <script src="engine/experiences/ExperienceRegistry.js"></script>
 
-<script src="app/systems/AchievementSystem.js"></script>
+    <script src="engine/experiences/ComingSoonExperience.js"></script>
 
-<script src="app/core/entities/Entity.js"></script>
-<script src="app/core/Activity.js"></script>
+    <script src="engine/core/Engine.js"></script>
 
-<script src="app/systems/EntitySystem.js"></script>
-<script src="app/systems/ActivitySystem.js"></script>
+    <script src="engine/core/bootstrap.js"></script>
 
-<script src="app/presentation/GardenRenderer.js"></script>
 
-<script src="app/engine.js"></script>
+    <!-- ===================================================== -->
+    <!-- Core -->
+    <!-- ===================================================== -->
 
+    <script src="app/core/EventBus.js"></script>
+    <script src="app/core/WorldState.js"></script>
+    <script src="app/core/WorldClock.js"></script>
+    <script src="app/core/GameLoop.js"></script>
+    <script src="app/core/SaveSystem.js"></script>
+    <script src="app/core/ContentLoader.js"></script>
+    <script src="app/core/managers/ContentManager.js"></script>
+    <script src="app/core/managers/SystemManager.js"></script>
+
+
+    <!-- ===================================================== -->
+    <!-- Content -->
+    <!-- ===================================================== -->
+
+    <script src="app/data/activities.js"></script>
+
+    <script src="content/rewards/rewards.js"></script>
+
+    <script src="content/achievements/achievements.js"></script>
+
+    <script src="content/plants/plants.js"></script>
+
+    <script src="app/data/activities/activityLibrary.js"></script>
+
+    <script src="app/data/worlds/noahsWorld.js"></script>
+
+
+    <!-- ===================================================== -->
+    <!-- Systems -->
+    <!-- ===================================================== -->
+
+    <script src="app/systems/NavigationSystem.js"></script>
+
+    <script src="app/systems/WorldSystem.js"></script>
+
+    <script src="app/systems/LocationSystem.js"></script>
+
+    <script src="app/systems/ProgressSystem.js"></script>
+
+    <script src="app/systems/RewardSystem.js"></script>
+
+    <script src="app/systems/AchievementSystem.js"></script>
+
+    <script src="app/core/entities/Entity.js"></script>
+
+    <script src="app/core/world/Tile.js"></script>
+
+    <script src="app/core/Activity.js"></script>
+
+    <script src="app/systems/EntitySystem.js"></script>
+
+    <script src="app/systems/TileSystem.js"></script>
+
+    <script src="app/systems/ActivitySystem.js"></script>
+
+    <script src="app/systems/SimulationSystem.js"></script>
+
+    <script src="app/systems/simulation/PlantSimulation.js"></script>
+
+
+    <!-- ===================================================== -->
+    <!-- Presentation -->
+    <!-- ===================================================== -->
+
+    <script src="app/presentation/GardenRenderer.js"></script>
+
+    <script src="app/debug/DebugOverlay.js"></script>
+
+<script src="app/Game.js"></script>
 
 </body>
 

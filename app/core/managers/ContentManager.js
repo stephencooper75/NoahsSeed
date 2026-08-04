@@ -2,7 +2,8 @@ class ContentManager {
 
     constructor(contentLoader) {
 
-        this.contentLoader = contentLoader;
+        this.contentLoader =
+            contentLoader;
 
     }
 
@@ -13,21 +14,21 @@ class ContentManager {
         data
     ) {
 
-
         for (
             const item of data
         ) {
 
-
             this.contentLoader.register(
+
                 category,
+
                 item.id,
+
                 item
+
             );
 
-
         }
-
 
     }
 
@@ -35,29 +36,60 @@ class ContentManager {
 
     loadAll() {
 
-
         this.registerContent(
+
             "activities",
-            ACTIVITY_DATA
+
+            ACTIVITIES
+
         );
 
 
+
         this.registerContent(
+
             "rewards",
-            REWARD_DATA
+
+            REWARDS
+
         );
+
 
 
         this.registerContent(
+
             "achievements",
-            ACHIEVEMENT_DATA
+
+            ACHIEVEMENTS
+
         );
+
+
+
+        if (
+
+            typeof PLANTS !==
+            "undefined"
+
+        ) {
+
+            this.registerContent(
+
+                "plants",
+
+                PLANTS
+
+            );
+
+        }
+
 
 
         console.log(
-            "All content loaded"
-        );
 
+            "All content loaded"
+
+        );
 
     }
 

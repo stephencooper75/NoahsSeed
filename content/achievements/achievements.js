@@ -3,7 +3,7 @@ console.log(
 );
 
 
-const ACHIEVEMENT_DATA = [
+window.ACHIEVEMENTS = [
 
     {
         id: "first_seed",
@@ -32,3 +32,5 @@ const ACHIEVEMENT_DATA = [
     }
 
 ];
+
+console.log("Achievements loaded", ACHIEVEMENTS);

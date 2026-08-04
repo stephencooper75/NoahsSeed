@@ -1,7 +1,7 @@
 console.log("Loading activities.js");
 
 
-const ACTIVITY_DATA = [
+window.ACTIVITIES = [
 
     {
         id: "plant_seed",
@@ -86,4 +86,4 @@ const ACTIVITY_DATA = [
 ];
 
 
-console.log(ACTIVITY_DATA);
+console.log(ACTIVITIES);

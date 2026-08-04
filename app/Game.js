@@ -1,4 +1,4 @@
-class Engine {
+class Game {
 
     constructor() {
 
@@ -11,6 +11,34 @@ class Engine {
             
             this.worldClock =
     new WorldClock();
+
+
+
+    this.simulationSystem =
+    new SimulationSystem(
+
+        this.eventBus,
+
+        this.worldClock
+
+    );
+
+
+    this.plantSimulation =
+    new PlantSimulation();
+
+    this.debugOverlay =
+    new DebugOverlay();
+
+
+    this.gameLoop =
+    new GameLoop(
+
+        this.simulationSystem,
+
+        10
+
+    );
 
 
 
@@ -63,6 +91,36 @@ this.gardenRenderer =
 this.systemManager.register(
     "entity",
     this.entitySystem
+);
+
+this.systemManager.register(
+
+    "simulation",
+
+    this.simulationSystem
+
+);
+
+
+this.simulationSystem.register(
+
+    this.plantSimulation
+
+);
+
+
+this.eventBus.subscribe(
+
+    "world_tick",
+
+    data => {
+
+        this.debugOverlay.update(
+            data
+        );
+
+    }
+
 );
 
 this.activitySystem =
@@ -176,6 +234,9 @@ this.systemManager.register(
         this.world.loadWorld(
             NOAH_WORLD
         );
+
+
+        this.gameLoop.start();
 
 
 
@@ -391,22 +452,18 @@ for (const activityId of location.activities) {
 
 
 
-        document
-            .getElementById("startButton")
-            .addEventListener(
-                "click",
-                () => {
+document
+    .getElementById("spaceInvadersButton")
+    .addEventListener(
+        "click",
+        () => {
 
-                    this.navigation.show(
-                        "locationScreen"
-                    );
+  engine.experiences
+    .get("space")
+    .start();
 
-
-                    this.locationSystem
-                        .displayLocations();
-
-                }
-            );
+        }
+    );
 
 
     }
@@ -415,4 +472,4 @@ for (const activityId of location.activities) {
 
 
 
-const engine = new Engine();
+window.game = new Game();

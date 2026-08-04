@@ -1,54 +1,56 @@
 class GameLoop {
 
-    constructor(update) {
+    constructor(
+        simulationSystem,
+        ticksPerSecond = 10
+    ) {
 
-        this.update = update;
+        this.simulationSystem =
+            simulationSystem;
 
-        this.running = false;
+        this.interval =
+            1000 / ticksPerSecond;
+
+        this.timer = null;
 
     }
-
-
 
     start() {
 
-        if (this.running) {
+        if (
+            this.timer
+        ) {
 
             return;
 
         }
 
-        this.running = true;
+        console.log(
+            "GameLoop started"
+        );
 
-        this.loop();
+        this.timer =
+            setInterval(
+
+                () => {
+
+                    this.simulationSystem.update();
+
+                },
+
+                this.interval
+
+            );
 
     }
-
-
 
     stop() {
 
-        this.running = false;
-
-    }
-
-
-
-    loop() {
-
-        if (!this.running) {
-
-            return;
-
-        }
-
-        this.update();
-
-        requestAnimationFrame(
-
-            () => this.loop()
-
+        clearInterval(
+            this.timer
         );
+
+        this.timer = null;
 
     }
 

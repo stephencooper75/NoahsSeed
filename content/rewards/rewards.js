@@ -1,4 +1,4 @@
-const REWARD_DATA = [
+window.REWARDS = [
 
     {
         id: "first_seed",
@@ -93,3 +93,5 @@ const REWARD_DATA = [
     }
 
 ];
+
+console.log("Rewards loaded", REWARDS);

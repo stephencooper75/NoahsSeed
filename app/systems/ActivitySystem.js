@@ -54,7 +54,7 @@ class ActivitySystem {
 
                 type: "plants",
 
-                name: "Apple Tree",
+             name: "apple_tree",
 
                 location: "garden",
 
