@@ -2,12 +2,9 @@ class GardenRenderer {
 
     constructor(entitySystem) {
 
-        this.entitySystem =
-            entitySystem;
+        this.entitySystem = entitySystem;
 
     }
-
-
 
     render() {
 
@@ -16,162 +13,187 @@ class GardenRenderer {
                 "plants"
             );
 
-
-
         if (plants.length === 0) {
 
             return `
 
-                <div class="gardenEmpty">
+            <div class="gardenEmpty">
 
-                    <h3>🌱 Empty Garden</h3>
+                <h2>🌱 Your Garden</h2>
 
-                    <p>
+                <p>
 
-                        Plant your first seed!
+                    Your garden is waiting for
+                    its very first seed.
 
-                    </p>
+                </p>
 
-                </div>
+                <p>
+
+                    Every great garden begins
+                    with one tiny seed.
+
+                </p>
+
+            </div>
 
             `;
 
         }
-
-
 
         let html =
             `<div class="gardenGrid">`;
 
-
-
         for (const plant of plants) {
 
-            const growth =
-                plant.state.growth ?? 0;
+            html +=
+                this.renderPlant(plant);
 
-            const water =
-                plant.state.water ?? 0;
+        }
 
+        html +=
+            `</div>`;
 
+        return html;
 
-            let icon = "🌰";
+    }
 
-            let stage = "Seed";
+    renderPlant(plant) {
 
+        const growth =
+            plant.state.growth ?? 0;
 
+        const water =
+            plant.state.water ?? 0;
 
-            if (growth >= 100) {
+        let icon = "🌰";
 
-                icon = "🌱";
+        let title =
+            "Apple Seed";
 
-                stage = "Sprout";
+        let description =
+            "Sleeping safely beneath the soil.";
 
-            }
+        let action = "";
 
+        //------------------------------------------------
+        // Growth Stages
+        //------------------------------------------------
 
+        if (growth >= 100) {
 
-            if (growth >= 300) {
+            icon = "🌱";
 
-                icon = "🌿";
+            title =
+                "Tiny Sprout";
 
-                stage = "Young Plant";
+            description =
+                "Something wonderful has begun.";
 
-            }
+            action = `
 
+                <button
+                    class="gardenAction"
+                    onclick="window.game.showCompanion('${plant.id}')">
 
+                    🏃 Show Companion
 
-            if (growth >= 700) {
-
-                icon = "🌳";
-
-                stage = "Tree";
-
-            }
-
-
-
-            if (growth >= 950) {
-
-                icon = "🍎";
-
-                stage = "Fruit Tree";
-
-            }
-
-
-
-            let waterStatus =
-                "Dry";
-
-
-
-            if (water >= 25) {
-
-                waterStatus =
-                    "Moist";
-
-            }
-
-
-
-            if (water >= 75) {
-
-                waterStatus =
-                    "Well Watered";
-
-            }
-
-
-
-            html += `
-
-                <div class="gardenPlant">
-
-                    <div class="plantIcon">
-
-                        ${icon}
-
-                    </div>
-
-                    <div class="plantName">
-
-                        ${plant.name}
-
-                    </div>
-
-                    <div class="plantStage">
-
-                        ${stage}
-
-                    </div>
-
-                    <div class="plantWater">
-
-                        💧 ${waterStatus}
-
-                    </div>
-
-                    <div class="plantWater">
-
-                        Growth:
-                        ${growth}
-
-                    </div>
-
-                </div>
+                </button>
 
             `;
 
         }
 
+        if (growth >= 300) {
 
+            icon = "🌿";
 
-        html += "</div>";
+            title =
+                "Young Apple Tree";
 
+            description =
+                "Growing a little stronger every day.";
 
+        }
 
-        return html;
+        if (growth >= 700) {
+
+            icon = "🌳";
+
+            title =
+                "Apple Tree";
+
+            description =
+                "Standing proudly in your garden.";
+
+        }
+
+        if (growth >= 950) {
+
+            icon = "🍎";
+
+            title =
+                "Apple Tree";
+
+            description =
+                "Your patience has been rewarded.";
+
+        }
+
+        //------------------------------------------------
+        // Water
+        //------------------------------------------------
+
+        let moisture =
+            "Dry";
+
+        if (water >= 25) {
+
+            moisture =
+                "Moist";
+
+        }
+
+        if (water >= 75) {
+
+            moisture =
+                "Happy";
+
+        }
+
+        return `
+
+            <div class="gardenPlant">
+
+                <div class="plantIcon">
+
+                    ${icon}
+
+                </div>
+
+                <h3>
+
+                    ${title}
+
+                </h3>
+
+                <p>
+
+                    ${description}
+
+                </p>
+
+                <p>
+
+                    💧 ${moisture}
+
+                </p>
+
+                ${action}
+
+            </div>
+
+        `;
 
     }
 

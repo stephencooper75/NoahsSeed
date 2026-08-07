@@ -470,6 +470,28 @@ document
 
 }
 
+showCompanion(plantId) {
 
+    document
+        .getElementById("message")
+        .innerHTML = `
+
+        <h2>😊 Dad</h2>
+
+        <p>
+
+            I'm glad you showed me.
+
+        </p>
+
+        <p>
+
+            We'll keep watching together.
+
+        </p>
+
+        `;
+
+}
 
 window.game = new Game();
