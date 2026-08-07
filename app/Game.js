@@ -165,24 +165,6 @@ to see it...
 
 this.activitySystem =
     new ActivitySystem(
-
-this.gardenSystem =
-    new GardenSystem(
-
-        this.eventBus,
-
-        this.entitySystem
-
-    );
-
-this.systemManager.register(
-
-    "garden",
-
-    this.gardenSystem
-
-);
-
         this.eventBus,
         this.entitySystem
     );
@@ -191,6 +173,18 @@ this.systemManager.register(
     "activity",
     this.activitySystem
 );
+
+this.gardenSystem =
+    new GardenSystem(
+        this.eventBus,
+        this.entitySystem
+    );
+
+this.systemManager.register(
+    "garden",
+    this.gardenSystem
+);
+
 
 
 
@@ -528,27 +522,25 @@ document
 
 }
 
-showCompanion(plantId) {
+    showCompanion(plantId) {
 
-    document
-        .getElementById("message")
-        .innerHTML = `
+        document
+            .getElementById("message")
+            .innerHTML = `
 
         <h2>😊 Dad</h2>
 
         <p>
-
             I'm glad you showed me.
-
         </p>
 
         <p>
-
             We'll keep watching together.
-
         </p>
 
         `;
+
+    }
 
 }
 
