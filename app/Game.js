@@ -123,8 +123,66 @@ this.eventBus.subscribe(
 
 );
 
+
+this.eventBus.subscribe(
+
+    "plant_stage_changed",
+
+    data => {
+
+        if (
+            data.stage === "sprout"
+        ) {
+
+            document
+                .getElementById(
+                    "message"
+                )
+                .innerHTML = `
+
+<h2>🌱 Something Changed</h2>
+
+<p>
+
+A tiny sprout has appeared!
+
+</p>
+
+<p>
+
+Maybe someone would like
+to see it...
+
+</p>
+
+`;
+
+        }
+
+    }
+
+);
+
 this.activitySystem =
     new ActivitySystem(
+
+this.gardenSystem =
+    new GardenSystem(
+
+        this.eventBus,
+
+        this.entitySystem
+
+    );
+
+this.systemManager.register(
+
+    "garden",
+
+    this.gardenSystem
+
+);
+
         this.eventBus,
         this.entitySystem
     );
