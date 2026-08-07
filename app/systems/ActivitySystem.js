@@ -13,8 +13,6 @@ class ActivitySystem {
 
     }
 
-
-
     start(activity) {
 
         console.log(
@@ -29,8 +27,6 @@ class ActivitySystem {
 
     }
 
-
-
     complete(activity) {
 
         console.log(
@@ -38,90 +34,129 @@ class ActivitySystem {
             activity.id
         );
 
+        switch (activity.id) {
 
+            case "plant_seed":
 
-        if (
-            activity.id === "plant_seed"
-        ) {
+                this.plantSeed();
 
-            const treeId =
-                "apple_tree_" +
-                Date.now();
+                break;
 
-            this.entitySystem.create({
+            case "water_plants":
 
-                id: treeId,
+                this.waterPlant();
 
-                type: "plants",
-
-             name: "apple_tree",
-
-                location: "garden",
-
-                state: {
-
-                    growth: 0,
-
-                    water: 0,
-
-                    health: 100
-
-                }
-
-            });
+                break;
 
         }
-
-
-
-        if (
-            activity.id === "water_plants"
-        ) {
-
-            const plants =
-                this.entitySystem.getByCategory(
-                    "plants"
-                );
-
-            for (const plant of plants) {
-
-                if (
-                    plant.state.water < 100
-                ) {
-
-                    plant.updateState({
-
-                        water:
-                            Math.min(
-                                plant.state.water + 25,
-                                100
-                            )
-
-                    });
-
-                    this.entitySystem.update(
-
-                        plant.id,
-
-                        plant.state
-
-                    );
-
-                    break;
-
-                }
-
-            }
-
-        }
-
-
 
         this.eventBus.publish(
 
             "activity_completed",
 
             activity.getData()
+
+        );
+
+    }
+
+    plantSeed() {
+
+        const treeId =
+            "apple_tree_" +
+            Date.now();
+
+        this.entitySystem.create({
+
+            id: treeId,
+
+            type: "plants",
+
+            name: "Apple Tree",
+
+            location: "garden",
+
+            state: {
+
+                growth: 0,
+
+                water: 20,
+
+                health: 100,
+
+                stage: "seed",
+
+                discovered: false,
+
+                companionShown: false
+
+            }
+
+        });
+
+        this.eventBus.publish(
+
+            "seed_planted",
+
+            {
+
+                id: treeId
+
+            }
+
+        );
+
+    }
+
+    waterPlant() {
+
+        const plants =
+            this.entitySystem.getByCategory(
+                "plants"
+            );
+
+        if (
+            plants.length === 0
+        ) {
+
+            return;
+
+        }
+
+        const plant =
+            plants[0];
+
+        plant.updateState({
+
+            water:
+
+                Math.min(
+
+                    plant.state.water + 25,
+
+                    100
+
+                )
+
+        });
+
+        this.entitySystem.update(
+
+            plant.id,
+
+            plant.state
+
+        );
+
+        this.eventBus.publish(
+
+            "plant_watered",
+
+            {
+
+                id: plant.id
+
+            }
 
         );
 
