@@ -44,37 +44,42 @@ class ActivitySystem {
 
             case "water_plants":
 
-                this.waterPlant();
+                this.waterPlants();
 
                 break;
 
         }
 
         this.eventBus.publish(
-
             "activity_completed",
-
             activity.getData()
+        );
 
+        // NEW
+        // Tell the UI to redraw itself.
+
+        this.eventBus.publish(
+            "garden_updated"
         );
 
     }
 
     plantSeed() {
 
-        const treeId =
-            "apple_tree_" +
-            Date.now();
-
         this.entitySystem.create({
 
-            id: treeId,
+            id:
+                "apple_tree_" +
+                Date.now(),
 
-            type: "plants",
+            type:
+                "plants",
 
-            name: "Apple Tree",
+            name:
+                "Apple Tree",
 
-            location: "garden",
+            location:
+                "garden",
 
             state: {
 
@@ -84,81 +89,47 @@ class ActivitySystem {
 
                 health: 100,
 
-                stage: "seed",
-
-                discovered: false,
-
-                companionShown: false
+                stage: "seed"
 
             }
 
         });
 
-        this.eventBus.publish(
-
-            "seed_planted",
-
-            {
-
-                id: treeId
-
-            }
-
-        );
-
     }
 
-    waterPlant() {
+    waterPlants() {
 
         const plants =
             this.entitySystem.getByCategory(
                 "plants"
             );
 
-        if (
-            plants.length === 0
-        ) {
+        for (const plant of plants) {
 
-            return;
+            plant.updateState({
+
+                water:
+                    Math.min(
+
+                        plant.state.water + 25,
+
+                        100
+
+                    )
+
+            });
+
+            this.entitySystem.update(
+
+                plant.id,
+
+                plant.state
+
+            );
+
+            break;
 
         }
-
-        const plant =
-            plants[0];
-
-        plant.updateState({
-
-            water:
-
-                Math.min(
-
-                    plant.state.water + 25,
-
-                    100
-
-                )
-
-        });
-
-        this.entitySystem.update(
-
-            plant.id,
-
-            plant.state
-
-        );
-
-        this.eventBus.publish(
-
-            "plant_watered",
-
-            {
-
-                id: plant.id
-
-            }
-
-        );
 
     }
 

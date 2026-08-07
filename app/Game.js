@@ -306,7 +306,29 @@ this.systemManager.register(
             }
         );
 
+this.eventBus.subscribe(
 
+    "garden_updated",
+
+    () => {
+
+        const garden =
+            document.getElementById(
+                "gardenView"
+            );
+
+        if (!garden) {
+
+            return;
+
+        }
+
+        garden.innerHTML =
+            this.gardenRenderer.render();
+
+    }
+
+);
 
 
 
