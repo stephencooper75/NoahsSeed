@@ -523,7 +523,23 @@ for (const activityId of location.activities) {
 
 
 
+document
+    .getElementById("startButton")
+    .addEventListener(
 
+        "click",
+
+        () => {
+
+            this.navigation.show(
+                "locationScreen"
+            );
+
+            this.locationSystem.showLocations();
+
+        }
+
+    );
 
 
 document

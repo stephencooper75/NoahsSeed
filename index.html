@@ -13,6 +13,54 @@
     <link rel="stylesheet"
           href="css/style.css">
 
+
+
+<!-- ===================================================== -->
+<!-- Noah's Seed Branding -->
+<!-- ===================================================== -->
+
+<link rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="branding/favicon-32.png">
+
+<link rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="branding/favicon-16.png">
+
+<link rel="icon"
+      type="image/svg+xml"
+      href="branding/favicon.svg">
+
+<link rel="shortcut icon"
+      type="image/x-icon"
+      href="branding/favicon.ico">
+
+<link rel="apple-touch-icon"
+      sizes="180x180"
+      href="branding/apple-touch-icon.png">
+
+<!-- Android / PWA -->
+
+<link rel="manifest"
+      href="manifest.json">
+
+<meta name="theme-color"
+      content="#4CAF50">
+
+<meta name="mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="default">
+
+<meta name="apple-mobile-web-app-title"
+      content="Noah's Seed">
+
 </head>
 
 <body>
@@ -56,7 +104,10 @@
     <div id="welcomeScreen"
          class="container">
 
-        <h1>🌱 Noah's World</h1>
+       <img
+    src="branding/logo-horizontal.png"
+    alt="Noah's Seed"
+    class="gameLogo">
 
         <h2>Welcome!</h2>
 
@@ -84,7 +135,10 @@
     <div id="locationScreen"
          class="container hidden">
 
-        <h1>🌱 Noah's World</h1>
+       <img
+    src="branding/logo-horizontal.png"
+    alt="Noah's Seed"
+    class="gameLogo">
 
         <h2>Choose your adventure</h2>
 
@@ -100,7 +154,10 @@
     <div id="gameScreen"
          class="container hidden">
 
-        <h1>🌱 Noah's World</h1>
+<img
+    src="branding/logo-horizontal.png"
+    alt="Noah's Seed"
+    class="gameLogo">
 
         <div id="locationInfo"></div>
 
@@ -137,9 +194,12 @@
     <div id="gardenScreen"
          class="container hidden">
 
-        <h1>🌳 Noah's Garden</h1>
+      <img
+    src="branding/logo-horizontal.png"
+    alt="Noah's Seed"
+    class="gameLogo">
 
-        <div id="gardenContents"></div>
+<div id="gardenView"></div>
 
         <br>
 
@@ -240,7 +300,9 @@
 
     <script src="app/systems/RewardSystem.js"></script>
 
-    <script src="app/systems/GardenSystem.js"></script>
+  <script src="content/nature/ambientEvents.js"></script>
+
+<script src="app/systems/NatureSystem.js"></script>
 
     <script src="app/systems/AchievementSystem.js"></script>
 

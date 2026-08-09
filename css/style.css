@@ -377,3 +377,20 @@ button:disabled {
     color: #555;
 
 }
+
+
+/* ===================================================== */
+/* Noah's Seed Branding */
+/* ===================================================== */
+
+.gameLogo {
+
+    display: block;
+
+    width: 420px;
+
+    max-width: 90%;
+
+    margin: 0 auto 20px auto;
+
+}

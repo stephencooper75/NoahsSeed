@@ -27,6 +27,14 @@ class NatureSystem {
 
         this.tick++;
 
+        this.updatePlants();
+
+        this.checkAmbientLife();
+
+    }
+
+    updatePlants() {
+
         const plants =
             this.entitySystem.getByCategory(
                 "plants"
@@ -34,19 +42,11 @@ class NatureSystem {
 
         for (const plant of plants) {
 
-            //------------------------------------
-            // Dry out slowly
-            //------------------------------------
-
             if (plant.state.water > 0) {
 
                 plant.state.water--;
 
             }
-
-            //------------------------------------
-            // Grow only if watered
-            //------------------------------------
 
             if (plant.state.water >= 25) {
 
@@ -54,34 +54,28 @@ class NatureSystem {
 
             }
 
-            //------------------------------------
-            // Stage progression
-            //------------------------------------
-
             const oldStage =
                 plant.state.stage;
 
-            let newStage =
+            let stage =
                 "seed";
 
             if (plant.state.growth >= 100)
-                newStage = "sprout";
+                stage = "sprout";
 
             if (plant.state.growth >= 300)
-                newStage = "young";
+                stage = "young";
 
             if (plant.state.growth >= 700)
-                newStage = "tree";
+                stage = "tree";
 
             if (plant.state.growth >= 950)
-                newStage = "fruit";
+                stage = "fruit";
 
-            if (
-                newStage !== oldStage
-            ) {
+            if (stage !== oldStage) {
 
                 plant.state.stage =
-                    newStage;
+                    stage;
 
                 this.eventBus.publish(
 
@@ -91,7 +85,7 @@ class NatureSystem {
 
                         plant,
 
-                        stage: newStage
+                        stage
 
                     }
 
@@ -108,6 +102,49 @@ class NatureSystem {
             );
 
         }
+
+    }
+
+    checkAmbientLife() {
+
+        if (
+            this.tick % 30 !== 0
+        ) {
+
+            return;
+
+        }
+
+        if (
+            typeof AMBIENT_EVENTS ===
+            "undefined"
+        ) {
+
+            return;
+
+        }
+
+        const event =
+
+            AMBIENT_EVENTS[
+
+                Math.floor(
+
+                    Math.random() *
+
+                    AMBIENT_EVENTS.length
+
+                )
+
+            ];
+
+        this.eventBus.publish(
+
+            "ambient_event",
+
+            event
+
+        );
 
     }
 
