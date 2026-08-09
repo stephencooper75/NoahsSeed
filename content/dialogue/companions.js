@@ -20,21 +20,25 @@ const COMPANIONS = {
 
             seed: [
 
-                "Every big tree begins as a tiny seed.",
+                "Every big tree starts as a tiny seed.",
 
-                "Let's see what happens.",
+                "Nature likes to take its time.",
 
-                "Nature likes to take its time."
+                "Let's see what happens."
 
             ],
 
             sprout: [
 
-                "You noticed before I did!",
+                "You noticed before I did.",
 
                 "Look at that little sprout!",
 
-                "We'll have to wait and see."
+                "We'll have to wait and see.",
+
+                "Good spotting!",
+
+                "I love discovering things with you."
 
             ],
 
@@ -42,9 +46,9 @@ const COMPANIONS = {
 
                 "Plants get thirsty too.",
 
-                "A little water goes a long way.",
+                "That should help it grow.",
 
-                "That should help it grow."
+                "You're taking good care of it."
 
             ],
 
@@ -52,9 +56,11 @@ const COMPANIONS = {
 
                 "That's interesting.",
 
+                "Let's remember this.",
+
                 "I hadn't noticed that.",
 
-                "Let's remember this."
+                "I wonder why that happened."
 
             ]
 
