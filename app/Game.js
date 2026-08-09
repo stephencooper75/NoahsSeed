@@ -2,13 +2,19 @@ class Game {
 
     constructor() {
 
+        
+        // ==========================================
+// Core Engine
+// ==========================================
         this.eventBus = new EventBus();
 
 
         this.worldState =
             new WorldState();
 
-            
+           // ==========================================
+// Simulation
+// ========================================== 
             this.worldClock =
     new WorldClock();
 
@@ -40,7 +46,9 @@ class Game {
 
     );
 
-
+// ==========================================
+// Content
+// ==========================================
 
         this.contentLoader =
             new ContentLoader();

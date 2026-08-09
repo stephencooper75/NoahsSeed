@@ -4,8 +4,6 @@ class JournalSystem {
 
         this.entries = [];
 
-        this.memories = [];
-
     }
 
     add(title, text) {
@@ -22,7 +20,7 @@ class JournalSystem {
 
         console.log(
 
-            "Journal updated:",
+            "📖 Journal:",
 
             title
 
@@ -30,27 +28,11 @@ class JournalSystem {
 
     }
 
-    addMemory(memory) {
+    has(title) {
 
-        const exists = this.memories.find(
+        return this.entries.some(
 
-            m => m.id === memory.id
-
-        );
-
-        if (exists) {
-
-            return;
-
-        }
-
-        this.memories.push(memory);
-
-        console.log(
-
-            "Memory unlocked:",
-
-            memory.name
+            entry => entry.title === title
 
         );
 
@@ -59,12 +41,6 @@ class JournalSystem {
     getEntries() {
 
         return this.entries;
-
-    }
-
-    getMemories() {
-
-        return this.memories;
 
     }
 
