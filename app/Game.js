@@ -174,15 +174,15 @@ this.systemManager.register(
     this.activitySystem
 );
 
-this.gardenSystem =
-    new GardenSystem(
+this.natureSystem =
+    new NatureSystem(
         this.eventBus,
         this.entitySystem
     );
 
 this.systemManager.register(
-    "garden",
-    this.gardenSystem
+    "nature",
+    this.natureSystem
 );
 
 
@@ -542,7 +542,6 @@ document
 
     }
 
-}
 
     showCompanion(plantId) {
 
@@ -563,7 +562,6 @@ document
         `;
 
     }
-
 }
 
 window.game = new Game();
