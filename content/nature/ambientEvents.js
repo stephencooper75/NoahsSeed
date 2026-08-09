@@ -1,53 +1,73 @@
 const AMBIENT_EVENTS = [
 
     {
-        id: "butterfly",
-
-        icon: "🦋",
-
+        id: "sunshine",
+        icon: "☀️",
         message:
-            "A butterfly landed gently on a nearby flower."
-
+            "Warm sunshine makes the park feel happy."
     },
 
     {
-        id: "bird",
-
+        id: "birdsong",
         icon: "🐦",
-
         message:
-            "A small bird watched quietly from the fence."
-
+            "You hear cheerful birds singing in the trees."
     },
 
     {
-        id: "leaf",
-
-        icon: "🍃",
-
+        id: "butterfly",
+        icon: "🦋",
         message:
-            "A leaf drifted slowly across the garden."
-
+            "A colourful butterfly dances through the flowers."
     },
 
     {
         id: "bee",
-
         icon: "🐝",
-
         message:
-            "A bee buzzed happily between the flowers."
+            "A busy bee is collecting pollen nearby."
+    },
 
+    {
+        id: "breeze",
+        icon: "🍃",
+        message:
+            "A gentle breeze rustles the leaves."
     },
 
     {
         id: "cloud",
-
         icon: "☁️",
-
         message:
-            "A soft cloud drifted across the sun."
+            "A fluffy cloud drifts slowly overhead."
+    },
 
+    {
+        id: "ladybird",
+        icon: "🐞",
+        message:
+            "A tiny ladybird lands on a bright green leaf."
+    },
+
+    {
+        id: "rainbow",
+        icon: "🌈",
+        message:
+            "A faint rainbow appears in the distance."
+    },
+
+    {
+        id: "duck",
+        icon: "🦆",
+        message:
+            "You spot a duck waddling happily nearby."
+    },
+
+    {
+        id: "dragonfly",
+        icon: "🪰",
+        message:
+            "A shimmering dragonfly zips across the garden."
     }
 
 ];

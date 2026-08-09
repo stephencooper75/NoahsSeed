@@ -5,13 +5,13 @@ class NatureSystem {
         entitySystem
     ) {
 
-        this.eventBus =
-            eventBus;
+        this.eventBus = eventBus;
 
-        this.entitySystem =
-            entitySystem;
+        this.entitySystem = entitySystem;
 
         this.tick = 0;
+
+        this.lastAmbientEvent = null;
 
         this.eventBus.subscribe(
 
@@ -57,8 +57,7 @@ class NatureSystem {
             const oldStage =
                 plant.state.stage;
 
-            let stage =
-                "seed";
+            let stage = "seed";
 
             if (plant.state.growth >= 100)
                 stage = "sprout";
@@ -74,19 +73,15 @@ class NatureSystem {
 
             if (stage !== oldStage) {
 
-                plant.state.stage =
-                    stage;
+                plant.state.stage = stage;
 
                 this.eventBus.publish(
 
                     "plant_stage_changed",
 
                     {
-
                         plant,
-
                         stage
-
                     }
 
                 );
@@ -107,36 +102,42 @@ class NatureSystem {
 
     checkAmbientLife() {
 
-        if (
-            this.tick % 30 !== 0
-        ) {
+        if (this.tick % 30 !== 0) {
 
             return;
 
         }
 
-        if (
-            typeof AMBIENT_EVENTS ===
-            "undefined"
-        ) {
+        if (typeof AMBIENT_EVENTS === "undefined") {
 
             return;
 
         }
 
-        const event =
+        let event;
 
-            AMBIENT_EVENTS[
+        do {
 
-                Math.floor(
+            event =
+                AMBIENT_EVENTS[
+                    Math.floor(
+                        Math.random() *
+                        AMBIENT_EVENTS.length
+                    )
+                ];
 
-                    Math.random() *
+        }
 
-                    AMBIENT_EVENTS.length
+        while (
 
-                )
+            AMBIENT_EVENTS.length > 1 &&
 
-            ];
+            event.id === this.lastAmbientEvent
+
+        );
+
+        this.lastAmbientEvent =
+            event.id;
 
         this.eventBus.publish(
 
