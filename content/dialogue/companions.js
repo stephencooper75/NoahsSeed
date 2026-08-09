@@ -6,33 +6,55 @@ const COMPANIONS = {
 
         name: "Dad",
 
-        personality: "curious",
-
         phrases: {
 
-            seedPlanted: [
+            welcome: [
+
+                "Ready for another adventure?",
+
+                "I wonder what we'll discover today.",
+
+                "Let's go exploring."
+
+            ],
+
+            seed: [
+
+                "Every big tree begins as a tiny seed.",
+
+                "Let's see what happens.",
+
+                "Nature likes to take its time."
+
+            ],
+
+            sprout: [
+
+                "You noticed before I did!",
+
+                "Look at that little sprout!",
 
                 "We'll have to wait and see."
 
             ],
 
-            firstSprout: [
+            water: [
 
-                "You noticed before I did.",
+                "Plants get thirsty too.",
 
-                "I'm really glad you showed me.",
+                "A little water goes a long way.",
 
-                "I wonder what it will become."
+                "That should help it grow."
 
             ],
 
-            encouragement: [
+            discovery: [
 
-                "That's interesting...",
+                "That's interesting.",
 
-                "Let's keep watching.",
+                "I hadn't noticed that.",
 
-                "Good spotting."
+                "Let's remember this."
 
             ]
 
