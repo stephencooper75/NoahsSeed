@@ -19,31 +19,27 @@ class GameScreenController {
 
     }
 
-
-
     showLocation(location) {
 
         this.locationInfo.innerHTML = `
 
-            <h2>
+<h2>
+${location.icon} ${location.name}
+</h2>
 
-                ${location.icon}
+<p>
+${location.description}
+</p>
 
-                ${location.name}
-
-            </h2>
-
-            <p>
-
-                ${location.description}
-
-            </p>
-
-        `;
+`;
 
     }
 
+    showMessage(html) {
 
+        this.message.innerHTML = html;
+
+    }
 
     clearActivities() {
 
@@ -51,19 +47,67 @@ class GameScreenController {
 
     }
 
-
-
     addActivityButton(button) {
 
         this.activities.appendChild(button);
 
     }
 
+    showNoActivities() {
 
+        this.activities.innerHTML = `
 
-    showMessage(html) {
+<p>
 
-        this.message.innerHTML = html;
+✨ More adventures coming soon!
+
+</p>
+
+`;
+
+    }
+
+    showLevelUp(level) {
+
+        this.showMessage(`
+
+<h2>🌟 Level Up!</h2>
+
+<p>
+
+Congratulations Noah!
+
+</p>
+
+<p>
+
+You reached Nature Level ${level}.
+
+</p>
+
+`);
+
+    }
+
+    showPlantDiscovery() {
+
+        this.showMessage(`
+
+<h2>🌱 Something Changed</h2>
+
+<p>
+
+A tiny sprout has appeared!
+
+</p>
+
+<p>
+
+Maybe someone would like to see it...
+
+</p>
+
+`);
 
     }
 
