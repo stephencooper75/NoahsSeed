@@ -101,6 +101,9 @@ this.gardenRenderer =
     this.worldMapRenderer =
     new WorldMapRenderer();
 
+    this.musicStudio =
+    new MusicStudio();
+
 
 this.systemManager.register(
     "entity",
@@ -621,16 +624,43 @@ document
 
 
 document
-    .getElementById("spaceInvadersButton")
+    .getElementById(
+        "musicStudioButton"
+    )
     .addEventListener(
 
         "click",
 
         () => {
 
-            engine.experiences
-                .get("space")
-                .start();
+            const window =
+
+                document.getElementById(
+                    "experienceWindow"
+                );
+
+            window.style.display =
+                "block";
+
+            window.innerHTML =
+                this.musicStudio.render();
+
+            document
+                .getElementById(
+                    "closeMusicStudio"
+                )
+                .addEventListener(
+
+                    "click",
+
+                    () => {
+
+                        window.style.display =
+                            "none";
+
+                    }
+
+                );
 
         }
 

@@ -38,15 +38,25 @@ body {
 
     box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 
+
 }
 
 
 
 #welcomeScreen,
 #locationScreen,
-#gameScreen {
+#worldMapScreen,
+#gameScreen,
+#gardenScreen {
 
-    position: absolute;
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 100;
 
 }
 
@@ -672,5 +682,91 @@ button:disabled {
         transform:rotate(0deg);
 
     }
+
+}
+
+/* ==========================================
+   Music Studio
+========================================== */
+
+.musicStudio{
+
+    text-align:center;
+
+}
+
+.instrumentToolbar{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.instrumentButton{
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+}
+
+.keyboard{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:4px;
+
+}
+
+.whiteKey{
+
+    width:42px;
+
+    height:180px;
+
+    background:white;
+
+    border:2px solid #444;
+
+    border-radius:0 0 8px 8px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:
+        transform .08s,
+        background .08s;
+
+    user-select:none;
+
+}
+
+.whiteKey span{
+
+    margin-bottom:8px;
+
+    font-size:11px;
+
+}
+
+.whiteKey:active{
+
+    transform:translateY(4px);
+
+    background:#ddd;
 
 }

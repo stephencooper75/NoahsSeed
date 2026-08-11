@@ -6,11 +6,9 @@ class LocationSystem {
         worldMapRenderer
     ) {
 
-        this.eventBus =
-            eventBus;
+        this.eventBus = eventBus;
 
-        this.worldSystem =
-            worldSystem;
+        this.worldSystem = worldSystem;
 
         this.worldMapRenderer =
             worldMapRenderer;
@@ -28,9 +26,9 @@ class LocationSystem {
 
     }
 
-    // --------------------------------------------------
+    // ----------------------------------
     // Backwards compatible alias
-    // --------------------------------------------------
+    // ----------------------------------
 
     showLocations() {
 
@@ -38,37 +36,41 @@ class LocationSystem {
 
     }
 
-    displayLocations() {
+ displayLocations() {
 
-        this.container.innerHTML =
-            this.worldMapRenderer.render();
+ 
 
-        const nodes =
-            this.container.querySelectorAll(
-                ".mapNode"
-            );
+this.container.innerHTML =
+        this.worldMapRenderer.render();
 
-        for (const node of nodes) {
 
-            node.addEventListener(
 
-                "click",
+    const nodes =
+        this.container.querySelectorAll(
+            ".mapNode"
+        );
 
-                () => {
 
-                    this.chooseLocation(
 
-                        node.dataset.location
+    for (const node of nodes) {
 
-                    );
+        node.addEventListener(
 
-                }
+            "click",
 
-            );
+            () => {
 
-        }
+                this.chooseLocation(
+                    node.dataset.location
+                );
+
+            }
+
+        );
 
     }
+
+}
 
     chooseLocation(locationId) {
 
@@ -76,7 +78,8 @@ class LocationSystem {
             this.getLocations().find(
 
                 location =>
-                    location.id === locationId
+                    location.id ===
+                    locationId
 
             );
 
@@ -94,9 +97,10 @@ class LocationSystem {
 
         }
 
-PLAYER.travelling = true;
+        PLAYER.travelling = true;
 
-PLAYER.destination = locationId;
+        PLAYER.destination =
+            locationId;
 
         PLAYER.x =
             WORLD_MAP.locations[
@@ -115,15 +119,15 @@ PLAYER.destination = locationId;
             () => {
 
                 PLAYER.location =
-    PLAYER.destination;
+                    PLAYER.destination;
 
-PLAYER.destination =
-    null;
+                PLAYER.destination =
+                    null;
 
-PLAYER.travelling =
-    false;
+                PLAYER.travelling =
+                    false;
 
-this.displayLocations();
+                this.displayLocations();
 
                 this.eventBus.publish(
 
