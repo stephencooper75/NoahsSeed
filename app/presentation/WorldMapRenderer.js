@@ -105,21 +105,18 @@ ${location.name}
         // Player
         // ==================================
 
+const playerLocation =
+    WORLD_MAP.locations[
+        PLAYER.location
+    ];
+
 html += `
-
-<div
-class="playerShadow"
-style="
-left:${PLAYER.x + 6}px;
-top:${PLAYER.y + 28}px;">
-
-</div>
 
 <div
 class="playerMarker"
 style="
-left:${PLAYER.x}px;
-top:${PLAYER.y}px;">
+left:${playerLocation.x + 25}px;
+top:${playerLocation.y + 20}px;">
 
 ${PLAYER.icon}
 

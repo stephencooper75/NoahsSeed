@@ -94,18 +94,8 @@ class LocationSystem {
 
         }
 
-        PLAYER.location =
-            locationId;
-
-        PLAYER.x =
-            WORLD_MAP.locations[
-                locationId
-            ].x + 25;
-
-        PLAYER.y =
-            WORLD_MAP.locations[
-                locationId
-            ].y + 20;
+PLAYER.location =
+    locationId;
 
         this.displayLocations();
 
