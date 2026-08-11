@@ -40,7 +40,7 @@ const WORLD_MAP = {
 
             x: 55,
 
-            y: 265
+            y: 225
 
         },
 

@@ -94,14 +94,36 @@ class LocationSystem {
 
         }
 
-PLAYER.location =
-    locationId;
+PLAYER.travelling = true;
+
+PLAYER.destination = locationId;
+
+        PLAYER.x =
+            WORLD_MAP.locations[
+                locationId
+            ].x + 25;
+
+        PLAYER.y =
+            WORLD_MAP.locations[
+                locationId
+            ].y + 20;
 
         this.displayLocations();
 
         setTimeout(
 
             () => {
+
+                PLAYER.location =
+    PLAYER.destination;
+
+PLAYER.destination =
+    null;
+
+PLAYER.travelling =
+    false;
+
+this.displayLocations();
 
                 this.eventBus.publish(
 

@@ -456,9 +456,9 @@ button:disabled {
 
 .mapNode:hover{
 
-    transform:scale(1.12);
+    transform:translateY(-4px) scale(1.08);
 
-    filter:brightness(1.15);
+    filter:brightness(1.12);
 
 }
 

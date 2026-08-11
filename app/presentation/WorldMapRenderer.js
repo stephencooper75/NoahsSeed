@@ -105,10 +105,27 @@ ${location.name}
         // Player
         // ==================================
 
-const playerLocation =
-    WORLD_MAP.locations[
-        PLAYER.location
-    ];
+let playerLocation;
+
+if (
+
+    PLAYER.travelling
+
+) {
+
+    playerLocation =
+        WORLD_MAP.locations[
+            PLAYER.destination
+        ];
+
+} else {
+
+    playerLocation =
+        WORLD_MAP.locations[
+            PLAYER.location
+        ];
+
+}
 
 html += `
 
@@ -118,7 +135,19 @@ style="
 left:${playerLocation.x + 25}px;
 top:${playerLocation.y + 20}px;">
 
-${PLAYER.icon}
+${
+
+PLAYER.travelling
+
+?
+
+"🚶"
+
+:
+
+PLAYER.icon
+
+}
 
 </div>
 

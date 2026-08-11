@@ -6,6 +6,12 @@ const PLAYER = {
 
     icon: "🙂",
 
-    location: "home"
+    location: "home",
+
+    travelling: false,
+
+    destination: null,
+
+    progress: 0
 
 };
