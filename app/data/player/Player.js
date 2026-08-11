@@ -6,6 +6,10 @@ const PLAYER = {
 
     icon: "🙂",
 
-    location: "home"
+    location: "home",
+
+    x: 78,
+
+    y: 150
 
 };

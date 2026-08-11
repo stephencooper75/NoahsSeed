@@ -22,17 +22,19 @@ Where would you like to go today?
 
 `;
 
-        // ============================
+        // ==================================
         // Scenery
-        // ============================
+        // ==================================
 
         for (const item of WORLD_MAP.scenery) {
 
             html += `
 
 <div
-    class="scenery"
-    style="left:${item.x}px;top:${item.y}px;">
+class="scenery"
+style="
+left:${item.x}px;
+top:${item.y}px;">
 
 ${item.icon}
 
@@ -42,17 +44,17 @@ ${item.icon}
 
         }
 
-        // ============================
+        // ==================================
         // Paths
-        // ============================
+        // ==================================
 
         for (const path of WORLD_MAP.paths) {
 
             html += `
 
 <div
-    class="path"
-    style="
+class="path"
+style="
 left:${path.x}px;
 top:${path.y}px;
 width:${path.width}px;">
@@ -63,9 +65,9 @@ width:${path.width}px;">
 
         }
 
-        // ============================
+        // ==================================
         // Locations
-        // ============================
+        // ==================================
 
         for (const id in WORLD_MAP.locations) {
 
@@ -75,12 +77,17 @@ width:${path.width}px;">
             html += `
 
 <div
-    class="mapNode"
-    style="
+class="mapNode"
+data-location="${location.id}"
+style="
 left:${location.x}px;
 top:${location.y}px;">
 
+<div class="mapIcon">
+
 ${location.icon}
+
+</div>
 
 <div class="mapLabel">
 
@@ -94,17 +101,33 @@ ${location.name}
 
         }
 
-        // ============================
+        // ==================================
         // Player
-        // ============================
+        // ==================================
 
-        html += `
+html += `
 
-<div class="playerMarker">
-
-🙂
+<div
+class="playerShadow"
+style="
+left:${PLAYER.x + 6}px;
+top:${PLAYER.y + 28}px;">
 
 </div>
+
+<div
+class="playerMarker"
+style="
+left:${PLAYER.x}px;
+top:${PLAYER.y}px;">
+
+${PLAYER.icon}
+
+</div>
+
+`;
+
+        html += `
 
 </div>
 

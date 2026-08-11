@@ -43,6 +43,31 @@ class LocationSystem {
         this.container.innerHTML =
             this.worldMapRenderer.render();
 
+        const nodes =
+            this.container.querySelectorAll(
+                ".mapNode"
+            );
+
+        for (const node of nodes) {
+
+            node.addEventListener(
+
+                "click",
+
+                () => {
+
+                    this.chooseLocation(
+
+                        node.dataset.location
+
+                    );
+
+                }
+
+            );
+
+        }
+
     }
 
     chooseLocation(locationId) {
@@ -69,11 +94,36 @@ class LocationSystem {
 
         }
 
-        this.eventBus.publish(
+        PLAYER.location =
+            locationId;
 
-            "location_selected",
+        PLAYER.x =
+            WORLD_MAP.locations[
+                locationId
+            ].x + 25;
 
-            location
+        PLAYER.y =
+            WORLD_MAP.locations[
+                locationId
+            ].y + 20;
+
+        this.displayLocations();
+
+        setTimeout(
+
+            () => {
+
+                this.eventBus.publish(
+
+                    "location_selected",
+
+                    location
+
+                );
+
+            },
+
+            700
 
         );
 

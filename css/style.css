@@ -400,21 +400,33 @@ button:disabled {
    World Map
 ======================================= */
 
-.worldGrid {
+.worldGrid{
 
-    position: relative;
+    position:relative;
 
-    width: 320px;
+    width:320px;
 
-    height: 320px;
+    height:320px;
 
-    margin: 20px auto;
+    margin:20px auto;
 
-    border: 3px solid #6da64d;
+    border:3px solid #72a85d;
 
-    border-radius: 20px;
+    border-radius:22px;
 
-    background: #dff4d8;
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            #e8f9df,
+
+            #d7efcd
+
+        );
+
+    overflow:hidden;
 
 }
 
@@ -429,6 +441,36 @@ button:disabled {
     font-size: 18px;
 
     font-weight: bold;
+
+}
+
+.mapNode{
+
+    cursor:pointer;
+
+    transition:
+        transform .2s,
+        filter .2s;
+
+}
+
+.mapNode:hover{
+
+    transform:scale(1.12);
+
+    filter:brightness(1.15);
+
+}
+
+.mapIcon{
+
+    font-size:34px;
+
+}
+
+.mapLabel{
+
+    margin-top:4px;
 
 }
 
@@ -464,20 +506,50 @@ button:disabled {
 
 }
 
-.playerMarker {
+.playerMarker{
 
-    position: absolute;
+    position:absolute;
 
-    left: 80px;
+    font-size:34px;
 
-    top: 140px;
+    transition:
 
-    font-size: 32px;
+        left .6s ease,
 
-    transition: all 0.5s ease;
+        top .6s ease,
+
+        transform .3s ease;
+
+    z-index:100;
+
+    filter:
+
+        drop-shadow(
+            2px 3px 2px rgba(0,0,0,.25)
+        );
 
 }
 
+
+.playerShadow{
+
+    position:absolute;
+
+    width:24px;
+
+    height:8px;
+
+    background:rgba(0,0,0,.18);
+
+    border-radius:50%;
+
+    transition:
+
+        left .6s ease,
+
+        top .6s ease;
+
+}
 
 /* ==========================================
    World Map Scenery
@@ -504,17 +576,29 @@ button:disabled {
 }
 
 
-
-
 .path{
 
     position:absolute;
 
-    height:8px;
+    height:10px;
 
-    background:#d2b48c;
+    background:linear-gradient(
 
-    border-radius:20px;
+        to bottom,
+
+        #d9c29b,
+
+        #c6ab82
+
+    );
+
+    border-radius:999px;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.45),
+
+        0 1px 2px rgba(0,0,0,.12);
 
 }
 
@@ -524,5 +608,69 @@ button:disabled {
     font-size:16px;
 
     font-weight:bold;
+
+}
+
+/* ==========================================
+   Living World
+========================================== */
+
+.scenery{
+
+    position:absolute;
+
+    font-size:30px;
+
+    user-select:none;
+
+    transform-origin:center bottom;
+
+    animation:sway 5s ease-in-out infinite;
+
+}
+
+.scenery:nth-child(even){
+
+    animation-duration:6.5s;
+
+}
+
+.scenery:nth-child(3n){
+
+    animation-duration:4.5s;
+
+}
+
+@keyframes sway{
+
+    0%{
+
+        transform:rotate(0deg);
+
+    }
+
+    25%{
+
+        transform:rotate(1deg);
+
+    }
+
+    50%{
+
+        transform:rotate(0deg);
+
+    }
+
+    75%{
+
+        transform:rotate(-1deg);
+
+    }
+
+    100%{
+
+        transform:rotate(0deg);
+
+    }
 
 }
