@@ -36,28 +36,36 @@ const INSTRUMENTS = {
 
     },
 
-    drums: {
+drums: {
 
-        id: "drums",
+    id:"drums",
 
-        name: "Drums",
+    name:"Drums",
 
-        icon: "🥁",
+    icon:"🥁"
 
-        waveform: "square"
+},
 
-    },
+fart: {
 
-    noah: {
+    id:"fart",
 
-        id: "noah",
+    name:"Fartophone",
 
-        name: "Noah's Choice",
+    icon:"💨"
 
-        icon: "⭐",
+},
 
-        waveform: "sine"
+noah: {
 
-    }
+    id: "noah",
+
+    name: "Noah's Choice",
+
+    icon: "⭐",
+
+    playable: false
+
+}
 
 };

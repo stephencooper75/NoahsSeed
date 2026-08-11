@@ -104,6 +104,15 @@ this.gardenRenderer =
     this.musicStudio =
     new MusicStudio();
 
+    this.dialogue =
+    new DialogueWindow();
+
+    this.experienceController =
+    new ExperienceController();
+
+    this.musicStudio.dialogue =
+    this.dialogue;
+
 
 this.systemManager.register(
     "entity",
@@ -306,7 +315,13 @@ this.navigation.register("gardenScreen");
             this.locationSystem
         );
 
+this.experienceController.register(
 
+    "music",
+
+    this.musicStudio
+
+);
 
 
         this.world.loadWorld(
@@ -644,38 +659,9 @@ document
 
             window.innerHTML =
                 this.musicStudio.render();
+                this.musicStudio.bindEvents();
 
-              const keys =
 
-    document.querySelectorAll(
-
-        ".whiteKey,.blackKey"
-
-    );
-
-keys.forEach(
-
-    key => {
-
-        key.addEventListener(
-
-            "mousedown",
-
-            () => {
-
-                this.musicStudio.music.play(
-
-                    key.dataset.note
-
-                );
-
-            }
-
-        );
-
-    }
-
-);  
 
             document
                 .getElementById(

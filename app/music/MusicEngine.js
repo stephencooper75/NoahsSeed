@@ -23,8 +23,15 @@ class MusicEngine {
 
     setInstrument(id) {
 
+       
         this.instrument = id;
+console.log(
 
+    "Instrument:",
+
+    id
+
+);
     }
 
     play(note) {
@@ -77,19 +84,11 @@ class MusicEngine {
 
         };
 
-        const waveforms = {
+const profile =
 
-            piano: "sine",
-
-            guitar: "triangle",
-
-            violin: "sawtooth",
-
-            drums: "square",
-
-            noah: "sine"
-
-        };
+    INSTRUMENT_PROFILES[
+        this.instrument
+    ];
 
         const context =
             this.getContext();
@@ -100,8 +99,26 @@ class MusicEngine {
         const gain =
             context.createGain();
 
-        oscillator.type =
-            waveforms[this.instrument];
+            gain.gain.setValueAtTime(
+
+    0,
+
+    context.currentTime
+
+);
+
+gain.gain.linearRampToValueAtTime(
+
+    profile.volume,
+
+    context.currentTime +
+
+    profile.attack
+
+);
+
+  oscillator.type =
+    profile.waveform;
 
         oscillator.frequency.value =
             frequencies[note];
@@ -112,7 +129,8 @@ class MusicEngine {
             context.destination
         );
 
-        gain.gain.value = 0.20;
+     gain.gain.value =
+    profile.volume;
 
         oscillator.start();
 
@@ -120,13 +138,15 @@ class MusicEngine {
 
             0.0001,
 
-            context.currentTime + 0.8
+  context.currentTime +
+profile.release
 
         );
 
         oscillator.stop(
 
-            context.currentTime + 0.8
+context.currentTime +
+profile.release
 
         );
 
