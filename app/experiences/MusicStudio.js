@@ -1,26 +1,92 @@
 class MusicStudio {
 
-    constructor() {
+constructor() {
 
-        this.notes = [
+    this.selectedInstrument =
 
-            "C3","D3","E3","F3","G3","A3","B3",
+        "piano";
 
-            "C4","D4","E4","F4","G4","A4","B4",
+    this.keyboard =
 
-            "C5","D5","E5","F5","G5","A5","B5",
+        new KeyboardRenderer();
 
-            "C6"
+    this.music =
 
-        ];
+        new MusicEngine();
+
+
+}
+
+    renderToolbar() {
+
+        let html = `
+
+<div class="instrumentToolbar">
+
+`;
+
+        for (const id in INSTRUMENTS) {
+
+            const instrument =
+                INSTRUMENTS[id];
+
+            const selected =
+
+                instrument.id ===
+                this.selectedInstrument
+
+                ? " selected"
+
+                : "";
+
+            html += `
+
+<button
+class="instrumentButton${selected}"
+data-instrument="${instrument.id}">
+
+${instrument.icon}
+
+${instrument.name}
+
+</button>
+
+`;
+
+        }
+
+        html += `
+
+</div>
+
+`;
+
+        return html;
+
+    }
+
+    renderFooter() {
+
+        return `
+
+<br>
+
+<button id="closeMusicStudio">
+
+⬅ Return
+
+</button>
+
+`;
 
     }
 
     render() {
 
-        let html = `
+        return `
 
-<div class="musicStudio">
+<div
+class="musicStudio">
 
 <h2>
 
@@ -34,81 +100,15 @@ Choose an instrument.
 
 </p>
 
-<div class="instrumentToolbar">
+${this.renderToolbar()}
 
-<button class="instrumentButton">
+${this.keyboard.render()}
 
-🎹 Piano
-
-</button>
-
-<button
-class="instrumentButton"
-disabled>
-
-🎸 Guitar
-
-<br>
-
-<small>Coming Soon</small>
-
-</button>
-
-<button
-class="instrumentButton"
-disabled>
-
-🥁 Drums
-
-<br>
-
-<small>Coming Soon</small>
-
-</button>
-
-</div>
-
-<div class="keyboard">
-
-`;
-
-        for (const note of this.notes) {
-
-            html += `
-
-<div
-class="whiteKey"
-data-note="${note}">
-
-<span>
-
-${note}
-
-</span>
+${this.renderFooter()}
 
 </div>
 
 `;
-
-        }
-
-        html += `
-
-</div>
-
-<br>
-
-<button id="closeMusicStudio">
-
-⬅ Return
-
-</button>
-
-</div>
-
-`;
-
-        return html;
 
     }
 

@@ -645,6 +645,38 @@ document
             window.innerHTML =
                 this.musicStudio.render();
 
+              const keys =
+
+    document.querySelectorAll(
+
+        ".whiteKey,.blackKey"
+
+    );
+
+keys.forEach(
+
+    key => {
+
+        key.addEventListener(
+
+            "mousedown",
+
+            () => {
+
+                this.musicStudio.music.play(
+
+                    key.dataset.note
+
+                );
+
+            }
+
+        );
+
+    }
+
+);  
+
             document
                 .getElementById(
                     "closeMusicStudio"
