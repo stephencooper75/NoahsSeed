@@ -22,7 +22,11 @@ class EventBus {
 
     publish(eventName, data) {
 
-        console.log("Event published:", eventName, data);
+    // console.log(
+//     "Event published:",
+//     eventName,
+//     data
+// );
 
 
         if (!this.events[eventName]) {

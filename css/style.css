@@ -394,3 +394,135 @@ button:disabled {
     margin: 0 auto 20px auto;
 
 }
+
+
+/* =======================================
+   World Map
+======================================= */
+
+.worldGrid {
+
+    position: relative;
+
+    width: 320px;
+
+    height: 320px;
+
+    margin: 20px auto;
+
+    border: 3px solid #6da64d;
+
+    border-radius: 20px;
+
+    background: #dff4d8;
+
+}
+
+.mapNode {
+
+    position: absolute;
+
+    width: 70px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+.home {
+
+    left: 30px;
+
+    top: 130px;
+
+}
+
+.garden {
+
+    left: 220px;
+
+    top: 130px;
+
+}
+
+.bedroom {
+
+    left: 30px;
+
+    top: 250px;
+
+}
+
+.library {
+
+    left: 220px;
+
+    top: 20px;
+
+}
+
+.playerMarker {
+
+    position: absolute;
+
+    left: 80px;
+
+    top: 140px;
+
+    font-size: 32px;
+
+    transition: all 0.5s ease;
+
+}
+
+
+/* ==========================================
+   World Map Scenery
+========================================== */
+
+.worldSubtitle{
+
+    margin-top:-8px;
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+.scenery{
+
+    position:absolute;
+
+    font-size:30px;
+
+    user-select:none;
+
+}
+
+
+
+
+.path{
+
+    position:absolute;
+
+    height:8px;
+
+    background:#d2b48c;
+
+    border-radius:20px;
+
+}
+
+
+.mapLabel{
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}

@@ -1,67 +1,141 @@
 const WORLD_MAP = {
 
-    home: {
+    locations: {
 
-        id: "home",
+        home: {
 
-        name: "Home",
+            id: "home",
 
-        connections: [
+            name: "Home",
 
-            "garden",
-            "bedroom",
-            "library"
+            icon: "🏠",
 
-        ]
+            x: 40,
+
+            y: 145
+
+        },
+
+        garden: {
+
+            id: "garden",
+
+            name: "Garden",
+
+            icon: "🌱",
+
+            x: 245,
+
+            y: 145
+
+        },
+
+        bedroom: {
+
+            id: "bedroom",
+
+            name: "Bedroom",
+
+            icon: "🛏️",
+
+            x: 55,
+
+            y: 265
+
+        },
+
+        library: {
+
+            id: "library",
+
+            name: "Library",
+
+            icon: "📚",
+
+            x: 245,
+
+            y: 40
+
+        }
 
     },
 
+    scenery: [
 
+        {
 
-    garden: {
+            icon: "🌳",
 
-        id: "garden",
+            x: 15,
 
-        name: "Garden",
+            y: 25
 
-        connections: [
+        },
 
-            "home"
+        {
 
-        ]
+            icon: "🌲",
 
-    },
+            x: 225,
 
+            y: 90
 
+        },
 
-    bedroom: {
+        {
 
-        id: "bedroom",
+            icon: "🌳",
 
-        name: "Bedroom",
+            x: 215,
 
-        connections: [
+            y: 250
 
-            "home"
+        },
 
-        ]
+        {
 
-    },
+            icon: "🌼",
 
+            x: 120,
 
+            y: 235
 
-    library: {
+        },
 
-        id: "library",
+        {
 
-        name: "Library",
+            icon: "🌸",
 
-        connections: [
+            x: 115,
 
-            "home"
+            y: 75
 
-        ]
+        },
 
-    }
+        {
+
+            icon: "🌿",
+
+            x: 35,
+
+            y: 205
+
+        }
+
+    ],
+
+    paths: [
+
+        {
+
+            x: 82,
+
+            y: 152,
+
+            width: 150
+
+        }
+
+    ]
 
 };

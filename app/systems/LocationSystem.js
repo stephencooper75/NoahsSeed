@@ -1,13 +1,24 @@
 class LocationSystem {
 
-    constructor(eventBus, worldSystem) {
+    constructor(
+        eventBus,
+        worldSystem,
+        worldMapRenderer
+    ) {
 
-        this.eventBus = eventBus;
+        this.eventBus =
+            eventBus;
 
-        this.worldSystem = worldSystem;
+        this.worldSystem =
+            worldSystem;
+
+        this.worldMapRenderer =
+            worldMapRenderer;
 
         this.container =
-            document.getElementById("locations");
+            document.getElementById(
+                "locations"
+            );
 
     }
 
@@ -29,35 +40,8 @@ class LocationSystem {
 
     displayLocations() {
 
-        this.container.innerHTML = "";
-
-        for (const location of this.getLocations()) {
-
-            const button =
-                document.createElement("button");
-
-            button.textContent =
-                `${location.icon || ""} ${location.name}`;
-
-            button.addEventListener(
-
-                "click",
-
-                () => {
-
-                    this.chooseLocation(
-                        location.id
-                    );
-
-                }
-
-            );
-
-            this.container.appendChild(
-                button
-            );
-
-        }
+        this.container.innerHTML =
+            this.worldMapRenderer.render();
 
     }
 

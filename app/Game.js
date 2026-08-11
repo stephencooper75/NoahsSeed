@@ -95,6 +95,12 @@ this.gardenRenderer =
         this.entitySystem
     );
 
+    this.wildlifeRenderer =
+    new WildlifeRenderer();
+
+    this.worldMapRenderer =
+    new WorldMapRenderer();
+
 
 this.systemManager.register(
     "entity",
@@ -247,11 +253,15 @@ this.systemManager.register(
 
 
 
-        this.navigation.register("welcomeScreen");
+ this.navigation.register("welcomeScreen");
 
-        this.navigation.register("locationScreen");
+this.navigation.register("locationScreen");
 
-        this.navigation.register("gameScreen");
+this.navigation.register("worldMapScreen");
+
+this.navigation.register("gameScreen");
+
+this.navigation.register("gardenScreen");
 
 
 
@@ -276,11 +286,16 @@ this.systemManager.register(
 
 
 
-        this.locationSystem =
-            new LocationSystem(
-                this.eventBus,
-                this.world
-            );
+ this.locationSystem =
+    new LocationSystem(
+
+        this.eventBus,
+
+        this.world,
+
+        this.worldMapRenderer
+
+    );
 
 
         this.systemManager.register(
@@ -314,6 +329,7 @@ this.systemManager.register(
             }
         );
 
+
 this.eventBus.subscribe(
 
     "garden_updated",
@@ -332,13 +348,67 @@ this.eventBus.subscribe(
         }
 
         garden.innerHTML =
+
+            this.wildlifeRenderer.render()
+
+            +
+
             this.gardenRenderer.render();
 
     }
 
 );
 
+this.eventBus.subscribe(
 
+    "ambient_event",
+
+    event => {
+
+        this.wildlifeRenderer.show(
+            event
+        );
+
+        document
+            .getElementById("message")
+            .innerHTML = `
+
+<h2>
+
+${event.icon}
+
+Nature Moment
+
+</h2>
+
+<p>
+
+${event.message}
+
+</p>
+
+`;
+
+        const garden =
+            document.getElementById(
+                "gardenView"
+            );
+
+        if (garden) {
+
+            garden.innerHTML =
+
+                this.wildlifeRenderer.render()
+
+                +
+
+                this.gardenRenderer.render();
+
+        }
+
+    }
+
+);
 
 
         this.eventBus.subscribe(
@@ -553,19 +623,20 @@ document
 document
     .getElementById("spaceInvadersButton")
     .addEventListener(
+
         "click",
+
         () => {
 
-  engine.experiences
-    .get("space")
-    .start();
+            engine.experiences
+                .get("space")
+                .start();
 
         }
+
     );
 
-
-    }
-
+}
 
     showCompanion(plantId) {
 

@@ -48,10 +48,10 @@ class EntitySystem {
         }
 
 
-        console.log(
-            "Entity created:",
-            entity
-        );
+// console.log(
+//     "Entity created:",
+//     entity
+// );
 
 
         return entity;
@@ -152,10 +152,10 @@ class EntitySystem {
             entity.getData();
 
 
-        console.log(
-            "Entity updated:",
-            entity
-        );
+  // console.log(
+//     "Entity updated:",
+//     entity
+// );
 
 
         return true;

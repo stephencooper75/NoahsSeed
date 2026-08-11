@@ -15,12 +15,42 @@ class ActivityMenu {
 
     build(
         container,
-        activities
+        location,
+        entitySystem,
+        onActivityStarted = null
     ) {
 
         container.innerHTML = "";
 
-        for (const activityId of activities) {
+        if (
+            !location ||
+            !location.activities ||
+            location.activities.length === 0
+        ) {
+
+            container.innerHTML = `
+
+<p>
+
+✨ More adventures coming soon!
+
+</p>
+
+`;
+
+            return;
+
+        }
+
+        const plants =
+            entitySystem.getByCategory(
+                "plants"
+            );
+
+        const hasPlants =
+            plants.length > 0;
+
+        for (const activityId of location.activities) {
 
             const activity =
                 this.contentLoader.get(
@@ -34,19 +64,53 @@ class ActivityMenu {
 
             }
 
+            if (
+
+                activity.id === "water_plants" &&
+
+                !hasPlants
+
+            ) {
+
+                continue;
+
+            }
+
+            if (
+
+                activity.id === "discover_insect"
+
+            ) {
+
+                continue;
+
+            }
+
             const button =
                 document.createElement(
                     "button"
                 );
 
             button.textContent =
-                `${activity.icon} ${activity.name}`;
+                this.getButtonCaption(
+                    activity
+                );
 
             button.addEventListener(
 
                 "click",
 
                 () => {
+
+                    if (
+                        onActivityStarted
+                    ) {
+
+                        onActivityStarted(
+                            activity
+                        );
+
+                    }
 
                     const activityInstance =
                         new Activity(
@@ -70,6 +134,26 @@ class ActivityMenu {
             );
 
         }
+
+    }
+
+    getButtonCaption(
+        activity
+    ) {
+
+        if (
+
+            activity.id ===
+            "water_plants"
+
+        ) {
+
+            return
+                "💧 Gently Water Seed";
+
+        }
+
+        return `${activity.icon} ${activity.name}`;
 
     }
 

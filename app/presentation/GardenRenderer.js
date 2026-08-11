@@ -74,6 +74,12 @@ class GardenRenderer {
         let description =
             "Sleeping safely beneath the soil.";
 
+        let nextStage =
+            "Sprout";
+
+        let nextGrowth =
+            100;
+
         let action = "";
 
         //------------------------------------------------
@@ -90,17 +96,23 @@ class GardenRenderer {
             description =
                 "Something wonderful has begun.";
 
+            nextStage =
+                "Young Tree";
+
+            nextGrowth =
+                300;
+
             action = `
 
-                <button
-                    class="gardenAction"
-                    onclick="window.game.showCompanion('${plant.id}')">
+<button
+class="gardenAction"
+onclick="window.game.showCompanion('${plant.id}')">
 
-                    🏃 Show Companion
+🏃 Show Companion
 
-                </button>
+</button>
 
-            `;
+`;
 
         }
 
@@ -114,6 +126,12 @@ class GardenRenderer {
             description =
                 "Growing a little stronger every day.";
 
+            nextStage =
+                "Tree";
+
+            nextGrowth =
+                700;
+
         }
 
         if (growth >= 700) {
@@ -125,6 +143,12 @@ class GardenRenderer {
 
             description =
                 "Standing proudly in your garden.";
+
+            nextStage =
+                "Fruit";
+
+            nextGrowth =
+                950;
 
         }
 
@@ -138,62 +162,99 @@ class GardenRenderer {
             description =
                 "Your patience has been rewarded.";
 
+            nextStage =
+                "Complete";
+
+            nextGrowth =
+                950;
+
         }
 
         //------------------------------------------------
         // Water
         //------------------------------------------------
 
-        let moisture =
-            "Dry";
+        let moisture = "Dry";
 
         if (water >= 25) {
 
-            moisture =
-                "Moist";
+            moisture = "Moist";
 
         }
 
         if (water >= 75) {
 
-            moisture =
-                "Happy";
+            moisture = "Happy";
 
         }
 
+        //------------------------------------------------
+        // Progress
+        //------------------------------------------------
+
+        let progress = Math.min(
+
+            Math.round(
+
+                (growth / nextGrowth) * 100
+
+            ),
+
+            100
+
+        );
+
         return `
 
-            <div class="gardenPlant">
+<div class="gardenPlant">
 
-                <div class="plantIcon">
+    <div class="plantIcon">
 
-                    ${icon}
+        ${icon}
 
-                </div>
+    </div>
 
-                <h3>
+    <h3>
 
-                    ${title}
+        ${title}
 
-                </h3>
+    </h3>
 
-                <p>
+    <p>
 
-                    ${description}
+        ${description}
 
-                </p>
+    </p>
 
-                <p>
+    <p>
 
-                    💧 ${moisture}
+        💧 ${moisture}
 
-                </p>
+    </p>
 
-                ${action}
+    <p>
 
-            </div>
+        🌱 Growth: ${growth}
 
-        `;
+    </p>
+
+    <p>
+
+        📈 ${progress}%
+
+    </p>
+
+    <p>
+
+        ⭐ Next Stage: ${nextStage}
+
+    </p>
+
+    ${action}
+
+</div>
+
+`;
 
     }
 

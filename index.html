@@ -148,6 +148,26 @@
 
 
     <!-- ===================================================== -->
+<!-- World Map -->
+<!-- ===================================================== -->
+
+<!-- TODO:
+     Legacy screen.
+     Remove after LocationScreen fully replaces it.
+-->
+<div id="worldMapScreen"
+     class="container hidden">
+
+    <img
+        src="branding/logo-horizontal.png"
+        alt="Noah's Seed"
+        class="gameLogo">
+
+    <div id="worldMapView"></div>
+
+</div>
+
+    <!-- ===================================================== -->
     <!-- Game Screen -->
     <!-- ===================================================== -->
 
@@ -282,7 +302,11 @@
 
     <script src="app/data/activities/activityLibrary.js"></script>
 
-    <script src="app/data/worlds/noahsWorld.js"></script>
+<script src="app/data/worlds/noahsWorld.js"></script>
+
+<script src="app/data/worlds/worldMap.js"></script>
+
+<script src="app/data/player/player.js"></script>
 
 
     <!-- ===================================================== -->
@@ -330,7 +354,19 @@
 
     <script src="app/presentation/GardenRenderer.js"></script>
 
+    <script src="app/presentation/WorldMapRenderer.js"></script>
+
+    <script src="app/presentation/WildlifeRenderer.js"></script>
+
+    <script src="app/presentation/SceneRenderer.js"></script>
+
     <script src="app/debug/DebugOverlay.js"></script>
+
+    <script src="app/ui/GameScreenController.js"></script>
+
+<script src="app/ui/ActivityMenu.js"></script>
+
+<script src="app/controllers/GameController.js"></script>
 
 <script src="app/Game.js"></script>
 

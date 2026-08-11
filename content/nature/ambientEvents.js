@@ -63,11 +63,11 @@ const AMBIENT_EVENTS = [
             "You spot a duck waddling happily nearby."
     },
 
-    {
-        id: "dragonfly",
-        icon: "🪰",
-        message:
-            "A shimmering dragonfly zips across the garden."
-    }
+{
+    id: "dragonfly",
+    icon: "✨",
+    message:
+        "A shimmering dragonfly zips across the garden."
+}
 
 ];
