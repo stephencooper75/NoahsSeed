@@ -22,6 +22,8 @@ const DISCOVERIES = {
 
             "Today my seed started growing. Dad came outside to look with me. We both felt excited to see the tiny sprout."
 
-    }
+    },
+
+
 
 };

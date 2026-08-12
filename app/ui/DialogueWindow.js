@@ -10,7 +10,9 @@ class DialogueWindow {
 
         message,
 
-        button = "OK"
+        button = "OK",
+
+        onClose = null
 
     }) {
 
@@ -60,6 +62,8 @@ ${button}
 
 </div>
 
+</div>
+
 `;
 
         document
@@ -74,9 +78,18 @@ ${button}
 
                 () => {
 
-                    window.style.display =
+                    if (onClose) {
 
-                        "none";
+                        onClose();
+
+                    }
+                    else {
+
+                        window.style.display =
+
+                            "none";
+
+                    }
 
                 }
 

@@ -68,14 +68,27 @@ class Game {
         this.systemManager =
             new SystemManager();
 
-this.saveSystem =
+        this.discoverySystem =
+            new DiscoverySystem(
+                this.eventBus,
+                this.worldState
+    );
+
+        this.systemManager.register(
+            "discovery",
+            this.discoverySystem
+);
+
+
+
+        this.saveSystem =
     new SaveSystem(
         this.eventBus,
         this.worldState
     );
 
 
-this.systemManager.register(
+        this.systemManager.register(
     "save",
     this.saveSystem
 );

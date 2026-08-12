@@ -6,6 +6,7 @@ class InstrumentController {
 
     }
 
+
     bind() {
 
         const buttons =
@@ -42,11 +43,67 @@ class InstrumentController {
 
     }
 
+
     select(id) {
 
         const instrument =
 
             INSTRUMENTS[id];
+
+
+        if (!instrument) {
+
+            return;
+
+        }
+
+
+        const available =
+
+            isInstrumentAvailable(
+
+                instrument,
+
+                window.game.discoverySystem
+
+            );
+
+
+        if (!available) {
+
+            this.musicStudio.dialogue.show({
+
+                speaker: "Dad",
+
+                icon: "😊",
+
+                title:
+                    "🔒 Not Discovered Yet",
+
+                message: `
+
+This instrument hasn't been
+discovered yet.
+
+Maybe we'll find it somewhere
+in Noah's Seed...
+
+`,
+
+                button: "🌱 OK",
+
+                onClose: () => {
+
+                    this.musicStudio.refresh();
+
+                }
+
+            });
+
+            return;
+
+        }
+
 
         if (
 
@@ -80,7 +137,13 @@ of Noah's Seed!
 
 `,
 
-                button: "🌱 OK"
+                button: "🌱 OK",
+
+                onClose: () => {
+
+                    this.musicStudio.refresh();
+
+                }
 
             });
 
@@ -88,15 +151,18 @@ of Noah's Seed!
 
         }
 
+
         this.musicStudio.selectedInstrument =
 
             id;
+
 
         this.musicStudio.music.setInstrument(
 
             id
 
         );
+
 
         this.musicStudio.refresh();
 
