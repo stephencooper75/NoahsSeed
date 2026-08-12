@@ -1,83 +1,33 @@
 class MusicStudio {
 
-constructor() {
+    constructor() {
 
-    this.selectedInstrument =
+        this.selectedInstrument = "piano";
 
-        "piano";
+        this.toolbar =
+            new ToolbarRenderer();
 
-    this.keyboard =
+        this.footer =
+            new FooterRenderer();
 
-        new KeyboardRenderer();
+        this.keyboard =
+            new KeyboardRenderer();
 
-    this.music =
+        this.music =
+            new MusicEngine();
 
-        new MusicEngine();
+        this.keyboardController =
+            new KeyboardController(
+                this.music
+            );
 
+        this.instrumentController =
+            new InstrumentController(
+                this
+            );
 
-}
-
-    renderToolbar() {
-
-        let html = `
-
-<div class="instrumentToolbar">
-
-`;
-
-        for (const id in INSTRUMENTS) {
-
-            const instrument =
-                INSTRUMENTS[id];
-
-            const selected =
-
-                instrument.id ===
-                this.selectedInstrument
-
-                ? " selected"
-
-                : "";
-
-            html += `
-
-<button
-class="instrumentButton${selected}"
-data-instrument="${instrument.id}">
-
-${instrument.icon}
-
-${instrument.name}
-
-</button>
-
-`;
-
-        }
-
-        html += `
-
-</div>
-
-`;
-
-        return html;
-
-    }
-
-    renderFooter() {
-
-        return `
-
-<br>
-
-<button id="closeMusicStudio">
-
-⬅ Return
-
-</button>
-
-`;
+        this.closeController =
+            new CloseController();
 
     }
 
@@ -85,8 +35,7 @@ ${instrument.name}
 
         return `
 
-<div
-class="musicStudio">
+<div class="musicStudio">
 
 <h2>
 
@@ -100,11 +49,15 @@ Choose an instrument.
 
 </p>
 
-${this.renderToolbar()}
+${this.toolbar.render(
+
+    this.selectedInstrument
+
+)}
 
 ${this.keyboard.render()}
 
-${this.renderFooter()}
+${this.footer.render()}
 
 </div>
 
@@ -112,177 +65,30 @@ ${this.renderFooter()}
 
     }
 
-bindEvents() {
+    bindEvents() {
 
-    this.bindClose();
+        this.closeController.bind();
 
-    this.bindKeyboard();
+        this.keyboardController.bind();
 
-    this.bindToolbar();
+        this.instrumentController.bind();
 
-}
+    }
 
-bindClose() {
+    refresh() {
 
-    document
-        .getElementById(
-            "closeMusicStudio"
-        )
-        .addEventListener(
+        const window =
 
-            "click",
-
-            () => {
-
-                document
-                    .getElementById(
-                        "experienceWindow"
-                    )
-                    .style.display =
-                    "none";
-
-            }
-
-        );
-
-}
-
-bindKeyboard() {
-
-    const keys =
-
-        document.querySelectorAll(
-
-            ".whiteKey,.blackKey"
-
-        );
-
-    keys.forEach(
-
-        key => {
-
-            key.addEventListener(
-
-                "mousedown",
-
-                () => {
-
-                    this.music.play(
-
-                        key.dataset.note
-
-                    );
-
-                }
-
+            document.getElementById(
+                "experienceWindow"
             );
 
-        }
+        window.innerHTML =
 
-    );
+            this.render();
 
-}
+        this.bindEvents();
 
-bindToolbar() {
-
-    const buttons =
-
-        document.querySelectorAll(
-
-            ".instrumentButton"
-
-        );
-
-    buttons.forEach(
-
-        button => {
-
-            button.addEventListener(
-
-                "click",
-
-                () => {
-
-                    const instrument =
-
-                        INSTRUMENTS[
-                            button.dataset.instrument
-                        ];
-
-                    if (
-                        instrument.playable === false
-                    ) {
-
-                        this.dialogue.show({
-
-                            speaker: "Dad",
-
-                            icon: "😊",
-
-                            title: "⭐ Noah's Choice",
-
-                            message: `
-
-Hi Noah!
-
-This instrument doesn't exist yet.
-
-If you could invent ANY instrument
-in the whole world...
-
-🎵 What would it sound like?
-
-Tell Dad your idea.
-
-One day it could become part
-of Noah's Seed!
-
-`,
-
-                            button: "🌱 OK"
-
-                        });
-
-                        return;
-
-                    }
-
-                    this.selectedInstrument =
-                        instrument.id;
-
-                    this.music.setInstrument(
-                        instrument.id
-                    );
-
-                    this.refresh();
-
-                }
-
-            );
-
-        }
-
-    );
-
-}
-
-refresh() {
-
-    const window =
-
-        document.getElementById(
-
-            "experienceWindow"
-
-        );
-
-    window.innerHTML =
-
-        this.render();
-
-    this.bindEvents();
-
-}
-
+    }
 
 }
