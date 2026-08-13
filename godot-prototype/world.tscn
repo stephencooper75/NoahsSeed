@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://c5q3qokrsjb6x"]
+
+[ext_resource type="Texture2D" uid="uid://2dxtp68vn802" path="res://art/garden_background.png" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://btra8jfj8c48k" path="res://noah.gd" id="2_aqk2v"]
+[ext_resource type="Texture2D" uid="uid://dgdrvtbksacsj" path="res://art/characters/noah/Noah_idle_red.png" id="3_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://ct5i08rg1feq2" path="res://art/characters/noah/noah_idle_down.png" id="4_il2jm"]
+[ext_resource type="Texture2D" uid="uid://d2utv50b83bn2" path="res://art/characters/noah/noah_walk_down_1.png" id="4_pkg7o"]
+[ext_resource type="Texture2D" uid="uid://bg8dyejubuuvs" path="res://art/characters/noah/noah_walk_down_2.png" id="5_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://buileu5f5k1mg" path="res://art/characters/noah/noah_idle_left.png" id="5_wjb0r"]
+[ext_resource type="Texture2D" uid="uid://b75i02uao031d" path="res://art/characters/noah/noah_walk_down_3.png" id="6_ioo17"]
+[ext_resource type="Texture2D" uid="uid://cogdbe1vgf4v2" path="res://art/characters/noah/noah_idle_right.png" id="6_mc2jv"]
+[ext_resource type="Texture2D" uid="uid://bqcy3i74ayf3r" path="res://art/characters/noah/noah_idle_up.png" id="7_bo7i5"]
+[ext_resource type="Texture2D" uid="uid://8rnd1o4808rh" path="res://art/characters/noah/noah_walk_down_4.png" id="7_wse8f"]
+[ext_resource type="Texture2D" uid="uid://ww7adcv2xk4p" path="res://art/characters/noah/noah_walk_left_1.png" id="8_cbp6q"]
+[ext_resource type="Texture2D" uid="uid://dxqg5748jhi1p" path="res://art/characters/noah/noah_walk_left_2.png" id="9_26xuy"]
+[ext_resource type="Texture2D" uid="uid://cfpjjwwx8xhfq" path="res://art/characters/noah/noah_walk_left_3.png" id="10_bc84e"]
+[ext_resource type="Texture2D" uid="uid://pont3h5222an" path="res://art/characters/noah/noah_walk_left_4.png" id="11_wukud"]
+[ext_resource type="Texture2D" uid="uid://bj5ac7ij51edg" path="res://art/characters/noah/noah_walk_right_1.png" id="12_il2jm"]
+[ext_resource type="Texture2D" uid="uid://gtm2es2t21kj" path="res://art/characters/noah/noah_walk_right_2.png" id="13_wjb0r"]
+[ext_resource type="Texture2D" uid="uid://cy7rncevrvgit" path="res://art/characters/noah/noah_walk_right_3.png" id="14_mc2jv"]
+[ext_resource type="Texture2D" uid="uid://b34n75mpnuj1v" path="res://art/characters/noah/noah_walk_right_4.png" id="15_bo7i5"]
+[ext_resource type="Texture2D" uid="uid://3oxqhf3yorj4" path="res://art/characters/noah/noah_walk_up_1.png" id="16_4h6ng"]
+[ext_resource type="Texture2D" uid="uid://dlaecortad72a" path="res://art/characters/noah/noah_walk_up_2.png" id="17_o3ebs"]
+[ext_resource type="Texture2D" uid="uid://dewnb2snl4o6h" path="res://art/characters/noah/noah_walk_up_3.png" id="18_k83mh"]
+[ext_resource type="Texture2D" uid="uid://mjootumrcbcx" path="res://art/characters/noah/noah_walk_up_4.png" id="19_qktwf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qdj0w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qdj0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tlwt5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_il2jm")
+}],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wjb0r")
+}],
+"loop": 1,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mc2jv")
+}],
+"loop": 1,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bo7i5")
+}],
+"loop": 1,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pkg7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gbfbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ioo17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wse8f")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cbp6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_26xuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bc84e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wukud")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_il2jm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wjb0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mc2jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bo7i5")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_4h6ng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o3ebs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_k83mh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qktwf")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 8.0
+}]
+
+[node name="World" type="Node2D" unique_id=1814942401]
+
+[node name="Garden" type="Node2D" parent="." unique_id=416004788]
+
+[node name="GardenArtwork" type="Sprite2D" parent="." unique_id=1269023974]
+position = Vector2(960, 540)
+texture = ExtResource("1_f3sb7")
+
+[node name="Noah" type="CharacterBody2D" parent="." unique_id=740763569]
+position = Vector2(960, 540)
+script = ExtResource("2_aqk2v")
+
+[node name="NoahPlaceholder" type="Sprite2D" parent="Noah" unique_id=468297310]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_tlwt5")
+
+[node name="Camera" type="Camera2D" parent="Noah" unique_id=1895353021]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Noah" unique_id=1613993031]
+shape = SubResource("CapsuleShape2D_qdj0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Noah" unique_id=1432980307]
+sprite_frames = SubResource("SpriteFrames_qdj0w")
+animation = &"walk_left"
+frame_progress = 0.42161077

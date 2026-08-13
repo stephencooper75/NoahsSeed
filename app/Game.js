@@ -367,24 +367,14 @@ this.eventBus.subscribe(
 
     () => {
 
-        const garden =
-            document.getElementById(
-                "gardenView"
-            );
+        // The Garden location is now handled
+        // by the Godot garden.
+        //
+        // Keep the old JavaScript garden renderer
+        // available for later, but don't overwrite
+        // the Godot garden iframe.
 
-        if (!garden) {
-
-            return;
-
-        }
-
-        garden.innerHTML =
-
-            this.wildlifeRenderer.render()
-
-            +
-
-            this.gardenRenderer.render();
+        return;
 
     }
 
@@ -420,23 +410,6 @@ ${event.message}
 
 `;
 
-        const garden =
-            document.getElementById(
-                "gardenView"
-            );
-
-        if (garden) {
-
-            garden.innerHTML =
-
-                this.wildlifeRenderer.render()
-
-                +
-
-                this.gardenRenderer.render();
-
-        }
-
     }
 
 );
@@ -471,14 +444,53 @@ ${event.message}
 
 
 
-        this.eventBus.subscribe(
-            "location_selected",
-            (location) => {
+this.eventBus.subscribe(
+    "location_selected",
+    (location) => {
 
+        // ------------------------------------------
+        // Noah's Garden - Godot world
+        // ------------------------------------------
 
-                this.navigation.show(
-                    "gameScreen"
+        if (location.id === "garden") {
+
+            this.navigation.show(
+                "gardenScreen"
+            );
+
+            const garden =
+                document.getElementById(
+                    "gardenView"
                 );
+
+            garden.innerHTML = `
+
+<iframe
+    src="godot-prototype/web/garden.html"
+    style="
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+        border-radius: 0;
+    "
+    allow="autoplay; fullscreen"
+    title="Noah's Garden">
+</iframe>
+
+            `;
+
+            return;
+
+        }
+
+        // ------------------------------------------
+        // Existing locations
+        // ------------------------------------------
+
+        this.navigation.show(
+            "gameScreen"
+        );
 
 
 /*

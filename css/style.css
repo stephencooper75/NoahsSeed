@@ -47,19 +47,106 @@ body {
 #locationScreen,
 #worldMapScreen,
 #gameScreen,
+/* =====================================================
+   Full-screen Godot Garden
+   ===================================================== */
+
 #gardenScreen {
 
     position: fixed;
 
-    left: 50%;
-    top: 50%;
+    left: 0;
+    top: 0;
 
-    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+
+    transform: none;
+
+    padding: 0;
+    margin: 0;
+
+    border-radius: 0;
+
+    background: #000;
+
+    box-shadow: none;
 
     z-index: 100;
 
 }
 
+#gardenScreen #gardenView {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+#gardenScreen #gardenView iframe {
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    display: block;
+
+}
+
+/* The Garden is a full-screen game world */
+#gardenScreen .gameLogo {
+    display: none;
+}
+
+/* Garden fills the browser viewport */
+#gardenScreen {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    transform: none;
+
+    padding: 0;
+    margin: 0;
+
+    border-radius: 0;
+
+    background: #000;
+
+    box-shadow: none;
+
+    z-index: 100;
+
+}
+
+
+#gardenScreen #gardenView {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+#gardenScreen #gardenView iframe {
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    display: block;
+
+}
 
 
 .hidden {
